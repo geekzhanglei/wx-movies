@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
+  <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
@@ -9,5 +9,25 @@
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
+  </view> -->
+  <view class="hotmovie">
+    <view class="title">
+      <text>{{title}}</text>
+    </view>
+    <scroll-view class="movie-list" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50">
+      <view class="item" wx:for="{{movieArr}}">
+        <view class="preview">
+          <img src="{{item.src}}" alt="img is gone" />
+        </view>
+        <view class="info">
+          <view class="movie-title">{{item.title}}
+            <text class="rating">{{item.rating}}分</text>
+          </view>
+          <text class="start-time">{{item.start}}首映</text>
+          <text class="director">导演：{{item.director}}</text>
+          <text class="actors">主演：{{item.actors}}</text>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 </view>
