@@ -1,10 +1,13 @@
 {
   "pages": [
+    "pages/movies/index",
+    "pages/common/error/error",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/movies/index",
     "pages/teleplay/index",
-    "pages/usercenter/index"
+    "pages/usercenter/index",
+    "pages/usercenter/aboutus/index",
+    "pages/common/movieitem/movieItem"
   ],
   "window": {
     "backgroundTextStyle": "#eee",
@@ -18,15 +21,15 @@
     "downloadFile": 10000
   },
   "tabBar": {
-    "color":"#aaa",
-    "selectedColor":"#1E90FF",
-    "borderStyle":"1E90FF",
+    "color": "#aaa",
+    "selectedColor": "#1E90FF",
+    "borderStyle": "1E90FF",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath":"pages/index/icons/homepage.png",
-        "selectedIconPath":"pages/index/icons/s-homepage.png"
+        "iconPath": "pages/index/icons/homepage.png",
+        "selectedIconPath": "pages/index/icons/s-homepage.png"
       },
       {
         "pagePath": "pages/movies/index",
@@ -48,5 +51,5 @@
       }
     ]
   },
-  "debug": true
+  "debug": false
 }

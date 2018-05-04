@@ -1,19 +1,20 @@
-// pages/teleplay/index.js
+// pages/common/error/error.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        errorMsg: "未知错误"
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        wx.navigateTo({
-            url: "/pages/common/error/error?param=自定义跳转"
+        let _this = this;
+        _this.setData({
+            errorMsg: "服务器返回了" + options.param
         });
     },
 

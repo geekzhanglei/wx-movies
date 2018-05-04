@@ -1,22 +1,12 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
+const utils = require("../../utils/util.js");
 
 Page({
     data: {
-        // motto: 'Hello Wsorld',
-        // userInfo: {},
-        // hasUserInfo: false,
-        // canIUse: wx.canIUse('button.open-type.getUserInfo')
         title: '热映电影',
-        movieArr: [{
-            src: 'http://baidu.com',
-            title: '肖申克的救赎',
-            start: '2015年6月10日',
-            director: '张三',
-            actors: '张三，王璐，李华',
-            rating: '5'
-        }, ],
+        movieArr: [],
     },
     //事件处理函数
     // bindViewTap: function() {
@@ -25,68 +15,58 @@ Page({
     //   })
     // },
     onLoad: function() {
-
+        let _this = this;
         getHotMoviesApi(handleHotMoviesData);
 
-        //     if (app.globalData.userInfo) {
-        //         this.setData({
-        //             userInfo: app.globalData.userInfo,
-        //             hasUserInfo: true
-        //         })
-        //     } else if (this.data.canIUse) {
-        //         // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-        //         // 所以此处加入 callback 以防止这种情况
-        //         app.userInfoReadyCallback = res => {
-        //             this.setData({
-        //                 userInfo: res.userInfo,
-        //                 hasUserInfo: true
-        //             })
-        //         }
-        //     } else {
-        //         // 在没有 open-type=getUserInfo 版本的兼容处理
-        //         wx.getUserInfo({
-        //             success: res => {
-        //                 app.globalData.userInfo = res.userInfo
-        //                 this.setData({
-        //                     userInfo: res.userInfo,
-        //                     hasUserInfo: true
-        //                 })
-        //             }
-        //         })
-        //     }
+
         function handleHotMoviesData(data) {
-            let item, _this = this,_movieArr=[];
-            for (item in data) {
+            let _movieArr = [];
+            data.forEach(element => {
                 _movieArr.push({
-                    src: item.images.medium,
-                    title: '肖申克的救赎',
-                    start: '2015年6月10日',
-                    director: '张三',
-                    actors: '张三，王璐，李华',
-                    rating: '5'
-                })
-                this.setData({
-                    movieArr[i++].rating: item.rating.average;
+                    id: element.id,
+                    src: element.images.small,
+                    title: element.title,
+                    type: element.genres,
+                    director: utils.getEveryItem(element.directors, 'name'),
+                    actors: utils.getEveryItem(element.casts, 'name'),
+                    rating: utils.handleRating(element.rating.average)
                 });
-            }
-            this.setData({
-                movieArr: data
-            })
-            console.log(this.movieArr)
+            });
+            // 测试
+            // _movieArr = [{
+            //     id: 1232,
+            //     src: 3434,
+            //     title: '天赐良机',
+            //     type: '卡通',
+            //     director: '张三',
+            //     actors: '李四',
+            //     rating: 12
+            // }];
+            _this.setData({
+                movieArr: _movieArr
+            });
+
+
         }
+        // handleHotMoviesData([]);
 
         function getHotMoviesApi(fn) {
+            var _this = this;
             wx.request({
                 url: 'https://api.feroad.com/v2/movie/in_theaters',
                 header: {
-                    'content-type': 'application/json' // 默认值
+                    'content-type': 'json' // 默认值
                 },
                 success: function(res) {
-                    console.log(res.data.subjects)
-                    fn(res.data.subjects);
+                    if (res.statusCode == 200) {
+                        console.log(res.data.subjects);
+                        fn(res.data.subjects);
+                    } else {
+                        console.log("获取数据失败，真的！");
+                    }
                 },
                 fail: function(res) {
-                    alert('网络请求失败，真的！')
+                    console.log('网络请求失败，真的！');
                 }
             })
         }
@@ -116,5 +96,11 @@ Page({
                 console.log('转发失败');
             }
         }
+    },
+    /* 点击跳转 */
+    goToDetails: function(event) {
+        wx.navigateTo({
+            url: "/pages/common/movieitem/movieItem?id=" + event.currentTarget.id
+        });
     }
 })

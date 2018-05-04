@@ -1,2 +1,21 @@
 <!--pages/usercenter/index.wxml-->
-<text>pages/usercenter/index.wxml</text>
+<view class="my">
+    <view class="userinfo">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <block wx:else>
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+    </view>
+    <view class="item-wrap">
+        <view class="aboutus" bindtap="goToAboutus">
+            <view class="flex-left">
+                <image class="left" src="./icon/aboutus.png"></image>
+                <text>作者絮言</text>
+            </view>
+            <view class="flex-right">
+                <image src="./icon/arrow.png" mode="aspectFit" class="right"></image>
+            </view>
+        </view>
+    </view>
+</view>
