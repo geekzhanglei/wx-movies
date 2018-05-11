@@ -1,5 +1,0 @@
-<!--pages/common/error/error.wxml-->
-<view class="container">
-    <image class="err-icon" src="../icon/err.png"></image>
-    <text class="err-info">请求失败：{{errorMsg}}</text>
-</view>

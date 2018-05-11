@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "影视资讯->电视剧"
+    "navigationBarTitleText": "电视剧",
+    "usingComponents": {
+        "component-error": "../common/component/error/error"
+    }
 }

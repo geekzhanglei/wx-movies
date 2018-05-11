@@ -1,0 +1,5 @@
+<!--pages/common/component/error/error.wxml-->
+<view class="wrap">
+    <image class="err-icon" src="../../icon/err.png"></image>
+    <text class="err-info">sad...暂无资源</text>
+</view>

@@ -13,14 +13,13 @@
   }
 
   .title {
-    font-style: 42rpx;
+    font-style: 2rem;
     color: #444;
     text-align: center;
     padding-top: 20rpx;
   }
 
   .info {
-    font-size: 24rpx;
     color: #888;
     margin-top: 20rpx;
     width: 80%;
@@ -33,13 +32,12 @@
 
   .label {
     display: block;
-    font-size: 30rpx;
     margin-bottom: 30rpx;
   }
 
   .content {
     color: #666;
-    font-size: 22rpx;
+    font-size: 13px;
     padding: 2em;
   }
 

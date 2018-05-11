@@ -35,9 +35,51 @@ const handleRating = rating => {
     }
 }
 
+// 获取数据列表
+const getMovieListApi = (callback, url) => {
+    wx.request({
+        url: url,
+        header: {
+            'content-type': 'json' // 默认值
+        },
+        success: function(res) {
+            if (res.statusCode == 200) {
+                callback(res.data);
+            } else {
+                console.log("获取数据失败，真的！错误码：" + res.statusCode);
+            }
+        },
+        fail: function(res) {
+            console.log('网络请求失败，真的！');
+        }
+    })
+}
+
+// 处理票房数据
+const handleBox = function(data) {
+    console.log(data)
+    let res = 0;
+    switch (true) {
+        case data < 10000:
+            res = data + "美元";
+            break;
+        case data >= 10000 && data < 100000000:
+            res = (data / 10000).toFixed(1) + "万美元";
+            break;
+        case data > 100000000:
+            res = (data / 10000000).toFixed(3) + "亿美元";
+            break;
+        default:
+            res = "票房数据有误";
+            break;
+    }
+    return res;
+}
 
 module.exports = {
     formatTime: formatTime,
     getEveryItem: getEveryItem,
-    handleRating: handleRating
+    handleRating: handleRating,
+    getMovieListApi: getMovieListApi,
+    handleBox: handleBox
 }

@@ -4,38 +4,38 @@
         <view class="title">
             <title>搜索</title>
         </view>
-        <input type="text" placeholder="可按导演演员电影名搜索" />
+        <input type="text" bindinput="inputKeyWords" maxlength="10" focus placeholder="可按导演演员电影名搜索" />
     </view>
     <view class="find">
         <view class="title">
-            <title>专题</title>
+            <title>发现</title>
         </view>
         <view class="content">
             <view class="row">
-                <view class="item">
+                <view class="item" bindtap="goToList" id="comming">
                     <image src=""></image>
                     <view class="cover">
                         <text>即将上映</text>
                     </view>
                 </view>
-                <view class="item">
+                <view class="item" bindtap="goToList" id="top250">
                     <image src=""></image>
                     <view class="cover">
-                        <text>口碑榜</text>
+                        <text>top250</text>
                     </view>
                 </view>
             </view>
             <view class="row">
-                <view class="item">
+                <view class="item" bindtap="goToList" id="usbox">
+                    <image src=""></image>
+                    <view class="cover">
+                        <text>北美票房榜</text>
+                    </view>
+                </view>
+                <view class="item" bindtap="goToList" id="ongoing">
                     <image src=""></image>
                     <view class="cover">
                         <text>正在热映</text>
-                    </view>
-                </view>
-                <view class="item">
-                    <image src=""></image>
-                    <view class="cover">
-                        <text>Top250</text>
                     </view>
                 </view>
             </view>

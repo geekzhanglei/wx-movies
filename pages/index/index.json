@@ -1,5 +1,4 @@
 {
-    "navigationBarTitleText": "电影",
     "usingComponents": {
         "component-list": "../common/component/list/list"
     }

@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.98",
+	"libVersion": "2.0.0",
 	"appid": "wx48a96b741b453479",
 	"projectname": "xcx-movies",
 	"isGameTourist": false,

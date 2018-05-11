@@ -7,7 +7,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        movie: {}
+        movie: {},
+        isShow: true
     },
 
     /**
@@ -26,12 +27,13 @@ Page({
                     director: utils.getEveryItem(data.directors, "name"),
                     casts: utils.getEveryItem(data.casts, "name"),
                     image: data.images.large,
-                    summary: data.summary
-                }
+                    summary: data.summary,
+                },
+                isShow: true
             });
             // 更新页面标题
             wx.setNavigationBarTitle({
-                title: "热映电影->" + data.title //页面标题为路由参数
+                title: data.title //页面标题为路由参数
             });
         }
         // 获取电影详情接口
@@ -43,12 +45,14 @@ Page({
                 },
                 success: function(res) {
                     if (res.statusCode == 200) {
-                        console.log(res.data)
+                        _this.setData({
+                            isShow: true
+                        });
                         fn(res.data);
                     } else {
                         console.log("返回状态码不是200")
-                        wx.navigateTo({
-                            url: "/pages/common/error/error?param=" + res.data.msg
+                        _this.setData({
+                            isShow: false
                         });
                     }
                 },

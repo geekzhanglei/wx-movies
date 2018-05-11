@@ -3,7 +3,10 @@
   width:100%;
 }
 /* 标题部分  */
-.title {background:#eee;height:30px;line-height: 30px;}
+.title {
+  background:#eee;
+  height:2rem;
+  line-height: 2rem;}
 text {text-align: left;padding-left:10px}
 /* 电影列表 */
 .item {

@@ -1,0 +1,15 @@
+/* pages/common/component/error/error.wxss */
+.wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+.err-icon {
+    width:5rem;
+    height:5rem;
+}
+.err-info {
+    margin:1rem;
+}

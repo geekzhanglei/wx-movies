@@ -1,27 +1,40 @@
 /* pages/movies/index.wxss */
+.movie {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 /* 搜索 */
 input {
-   text-align:center;
+  text-align:center;
   margin:3rem auto;
   height: 2rem;
   border:1px solid #ddd;
   width:250px;
-  width:80vw;
   background:#edeaea;
   border-radius:5px;
 }
+.search {
+  flex:2;
+}
 .find {
+  flex:3;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   border-top:4px solid #eee;
 }
-.title,.search title {
+.title {
     height:2rem;
     line-height:2rem;
     border-bottom:1px solid #eee;
 }
+ title {
+   margin-left:0.3rem;
+ }
 /* 专题 */
 .item {
-    background: lightblue;
+    background: rgb(96, 201, 236);
     height:5rem;
     margin:0.5rem;
     border-radius:10rpx;
@@ -29,6 +42,7 @@ input {
 }
 .content {
     display: flex;
+    flex:1;
     flex-direction: column;
     margin:10px;
 }
@@ -36,6 +50,7 @@ input {
     flex:1;
     display: flex;
     flex-direction: row;
+    align-items:center;
 }
 .row .item:first-child {
     flex:2;

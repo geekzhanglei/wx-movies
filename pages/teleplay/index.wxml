@@ -1,2 +1,7 @@
 <!--pages/teleplay/index.wxml-->
-<text>等待接口</text>
+<view class="container">
+    <block class="tv" wx:if="{{false}}">
+        <view>haha</view>
+    </block>
+    <component-error wx:else></component-error>
+</view>

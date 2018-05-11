@@ -1,0 +1,4 @@
+<!--pages/movies/find/find.wxml-->
+<view class="container">
+    <component-list list-source="{{arrMovieList}}"></component-list>
+</view>
