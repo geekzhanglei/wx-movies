@@ -9,6 +9,8 @@ text {
     flex-direction: row;
     border-bottom:1px solid #eee;
     overflow: hidden;
+    background:rgb(245, 248, 250); 
+    font-size:0.8rem;
   }
   .preview {
     flex:2;
@@ -25,7 +27,7 @@ text {
     display: flex;
     flex-direction: column;
   }
-  .actors {
+  .info text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -40,3 +42,6 @@ text {
     float:right;
     color:rgb(243, 77, 77);
     }
+  .box,.type,.director,.actors {
+    color:#888;
+  }

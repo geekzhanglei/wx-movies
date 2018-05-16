@@ -46,6 +46,7 @@ const getMovieListApi = (callback, url) => {
             if (res.statusCode == 200) {
                 callback(res.data);
             } else {
+                callback("errorRequest"); //返回异常消息
                 console.log("获取数据失败，真的！错误码：" + res.statusCode);
             }
         },

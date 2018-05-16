@@ -1,25 +1,27 @@
 <!--pages/movies/index.wxml-->
-<view class="movie">
+<view class="movie" wx:if="{{isShowOk}}">
     <view class="search">
-        <view class="title">
-            <title>搜索</title>
+        <view class="title {{isSearchingTitle}}" bindtap="backto">
+            <title>{{title}}</title>
         </view>
-        <input type="text" bindinput="inputKeyWords" maxlength="10" focus placeholder="可按导演演员电影名搜索" />
+        <view class="input-wrap {{isSearchingInput}}">
+            <input focus="true" maxlength="8" bindtap="clickInput" type="text" bindinput="inputKeyWords" placeholder="可按导演演员电影名搜索" />
+        </view>
     </view>
-    <view class="find">
+    <view class="find" wx:if="{{isFind}}">
         <view class="title">
             <title>发现</title>
         </view>
         <view class="content">
             <view class="row">
                 <view class="item" bindtap="goToList" id="comming">
-                    <image src=""></image>
+                    <image src="{{imgComing}}"></image>
                     <view class="cover">
                         <text>即将上映</text>
                     </view>
                 </view>
                 <view class="item" bindtap="goToList" id="top250">
-                    <image src=""></image>
+                    <image src="{{imgTop250}}"></image>
                     <view class="cover">
                         <text>top250</text>
                     </view>
@@ -27,13 +29,13 @@
             </view>
             <view class="row">
                 <view class="item" bindtap="goToList" id="usbox">
-                    <image src=""></image>
+                    <image src="{{imgUSBook}}"></image>
                     <view class="cover">
                         <text>北美票房榜</text>
                     </view>
                 </view>
                 <view class="item" bindtap="goToList" id="ongoing">
-                    <image src=""></image>
+                    <image src="{{imgOngoing}}"></image>
                     <view class="cover">
                         <text>正在热映</text>
                     </view>
@@ -41,4 +43,6 @@
             </view>
         </view>
     </view>
+    <component-list wx:else list-source="{{arrMovieList}}"></component-list>
 </view>
+<component-error wx:else></component-error>

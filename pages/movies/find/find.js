@@ -18,11 +18,15 @@ Page({
      */
     onLoad: function(options) {
         let _this = this,
-            that = this;
+            that = this,
+            _type;
         wx.showLoading({
             title: "努力加载中..."
         });
-        switch (options.id) {
+        try {
+            _type = options.id;
+        } catch (e) {}
+        switch (_type) {
             case "comming":
                 wx.setNavigationBarTitle({
                     title: "电影->即将上映" //页面标题为路由参数
@@ -51,50 +55,23 @@ Page({
                 wx.navigateTo({
                     url: '/pages/movies/index',
                 })
+                wx.hideLoading();
+                wx.hideNavigationBarLoading();
+                wx.stopPullDownRefresh();
                 break;
         }
         // 全局变量赋值
         this.setData({
-            optionId: options.id
+            optionId: _type || "nothing"
         });
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-        console.log('下拉测试');
-        wx.navigateTo({
-            url: '/pages/movies/index',
-        })
+        wx.showNavigationBarLoading();
+        this.onLoad();
     },
 
     /**
@@ -123,6 +100,9 @@ Page({
                 utils.getMovieListApi(_this.handleMovieList, "https://api.feroad.com/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
                 break;
             default:
+                wx.hideLoading();
+                wx.hideNavigationBarLoading();
+                wx.stopPullDownRefresh();
                 break;
         }
     },
@@ -141,6 +121,16 @@ Page({
         let _movieArr = [],
             _tempArr,
             _box = "";
+
+        // 请求失败
+        if (data == "errorRequest") {
+            wx.hideLoading();
+            wx.showToast({
+                title: '请求失败，可能接口超限，请稍后重试',
+                duration: 2000
+            })
+        }
+        // 列表已下拉完
         if (_this.data._start > data.total) {
             _this.setData({
                 _isEnd: true
@@ -166,6 +156,8 @@ Page({
             });
         });
         wx.hideLoading();
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
         _this.setData({
             arrMovieList: _this.data.arrMovieList.concat(_movieArr)
         });

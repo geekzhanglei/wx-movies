@@ -27,26 +27,26 @@
         "list": [{
                 "pagePath": "pages/index/index",
                 "text": "首页",
-                "iconPath": "pages/index/icons/homepage.png",
-                "selectedIconPath": "pages/index/icons/s-homepage.png"
+                "iconPath": "images/tabBarIcons/homepage.png",
+                "selectedIconPath": "images/tabBarIcons/s-homepage.png"
             },
             {
                 "pagePath": "pages/movies/index",
                 "text": "电影",
-                "iconPath": "pages/index/icons/movie.png",
-                "selectedIconPath": "pages/index/icons/s-movie.png"
+                "iconPath": "images/tabBarIcons/movie.png",
+                "selectedIconPath": "images/tabBarIcons/s-movie.png"
             },
             {
                 "pagePath": "pages/teleplay/index",
                 "text": "电视剧",
-                "iconPath": "pages/index/icons/teleplay.png",
-                "selectedIconPath": "pages/index/icons/s-teleplay.png"
+                "iconPath": "images/tabBarIcons/teleplay.png",
+                "selectedIconPath": "images/tabBarIcons/s-teleplay.png"
             },
             {
                 "pagePath": "pages/usercenter/index",
                 "text": "我的",
-                "iconPath": "pages/index/icons/user.png",
-                "selectedIconPath": "pages/index/icons/s-user.png"
+                "iconPath": "images/tabBarIcons/user.png",
+                "selectedIconPath": "images/tabBarIcons/s-user.png"
             }
         ]
     },

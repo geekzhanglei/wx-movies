@@ -1,9 +1,10 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="hotmovie">
+  <view class="hotmovie" wx:if="{{isShowOk}}">
     <view class="title">
       <text>{{title}}</text>
     </view>
     <component-list list-source="{{movieArrSource}}"></component-list>
   </view>
+<component-error wx:else></component-error>
 </view>

@@ -5,7 +5,8 @@ Component({
         //     type: String,
         //     value: 'default value',
         // }
-        listSource: Array
+        listSource: Array,
+        // isShowOk: true
     },
     data: {
         // 这里是一些组件内部数据,初始化时渲染用

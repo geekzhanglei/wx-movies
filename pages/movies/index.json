@@ -1,6 +1,8 @@
 {
     "navigationBarTitleText": "电影",
     "usingComponents": {
-        "component-list": "../common/component/list/list"
-    }
+        "component-list": "../common/component/list/list",
+        "component-error": "../common/component/error/error"
+    },
+    "enablePullDownRefresh":true
 }

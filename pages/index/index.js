@@ -5,6 +5,7 @@ const utils = require("../../utils/util.js");
 
 Page({
     data: {
+        isShowOk: true,
         title: '热映电影',
         movieArrSource: [],
         _isEnd: false,
@@ -20,7 +21,10 @@ Page({
         });
         utils.getMovieListApi(_this.handleHotMoviesData, 'https://api.feroad.com/v2/movie/in_theaters?start=0&count=' + _this.data._count);
     },
-
+    onPullDownRefresh() {
+        wx.showNavigationBarLoading();
+        this.onLoad();
+    },
     // 下拉刷新
     onReachBottom: function() {
         let _this = this;
@@ -37,7 +41,6 @@ Page({
 
         utils.getMovieListApi(_this.handleHotMoviesData, "https://api.feroad.com/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
     },
-
     // 转发
     onShareAppMessage: function(res) {
         if (res.from === 'button') {
@@ -62,6 +65,18 @@ Page({
     handleHotMoviesData: function(data) {
         let _movieArr = [],
             _this = this;
+        // 请求失败
+        if (data == "errorRequest") {
+            wx.showToast({
+                title: '请求失败，可能达到接口上限',
+                icon:'none',
+                duration: 2000
+            });
+            this.setData({
+                isShowOk: false
+            });
+        }
+        // 下拉结束
         if (_this.data._start > data.total) {
             _this.setData({
                 _isEnd: true
@@ -79,6 +94,8 @@ Page({
             });
         });
         wx.hideLoading();
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
         _this.setData({
             movieArrSource: _this.data.movieArrSource.concat(_movieArr)
         });

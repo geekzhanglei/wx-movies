@@ -7,61 +7,104 @@ Page({
      * 页面的初始数据
      */
     data: {
-        keyWords: "",
+        isShowOk: true,
         _start: 0,
         _count: 15,
-        _isEnd: false
-        // movieArrSource: [],
-        // isList: false
+        _isEnd: false,
+        isFind: true,
+        isSearchingTitle: '',
+        isSearchingInput: '',
+        title: '搜索',
+        arrMovieList: [],
+        searchKeyWords: "",
+        imgOngoing: '',
+        imgTop250: '',
+        imgComing: '',
+        imgUSBook: ''
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function(options) {
-
+    onLoad() {
+        this.init();
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
+    init() {
+        let _this = this;
+        utils.getMovieListApi(_this._handleInitImg("comming"), "https://api.feroad.com/v2/movie/coming_soon?start=0&count=1");
+        utils.getMovieListApi(_this._handleInitImg("top250"), "https://api.feroad.com/v2/movie/top250?start=0&count=1");
+        utils.getMovieListApi(_this._handleInitImg("usBook"), "https://api.feroad.com/v2/movie/us_box");
+        utils.getMovieListApi(_this._handleInitImg("ongoing"), "https://api.feroad.com/v2/movie/in_theaters?start=0&count=1");
 
     },
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
+    _handleInitImg(type) {
+        let _this = this;
+        return function(data) {
+            if (data === "errorRequest") {
+              wx.hideLoading();
+              wx.showToast({
+                title: '请求失败，可能接口超限，请稍后重试',
+                duration: 2000
+              })                
+              return;
+            }
+            switch (type) {
+                case "comming":
+                    _this.setData({
+                        imgComing: data.subjects[0].images.small,
+                    });
+                    break;
+                case "top250":
+                    _this.setData({
+                        imgTop250: data.subjects[0].images.small
+                    });
+                    break;
+                case "usBook":
+                    _this.setData({
+                        imgUSBook: data.subjects[0].subject.images.small
+                    });
+                    break;
+                case "ongoing":
+                    _this.setData({
+                        imgOngoing: data.subjects[0].images.small,
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
     },
-
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
-
+    onPullDownRefresh() {
+        wx.showNavigationBarLoading();
+        this.setData({
+            isFind: true,
+            isSearchingInput: "",
+            isSearchingTitle: "",
+            title: '搜索',
+        });
+        wx.switchTab({
+            url: '../movies/index'
+        });
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
     },
-
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function() {
+        let _this = this;
+        // 已没有数据
+        if (_this.data._isEnd) {
+            return;
+        }
+        wx.showLoading({
+            title: "加载中..."
+        });
+        _this.setData({
+            _start: _this.data._start + _this.data._count
+        })
 
+        utils.getMovieListApi(this._handleSearchData, "https://api.feroad.com/v2/movie/search?q={" + _this.data.searchKeyWords + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
     },
 
     /**
@@ -71,29 +114,77 @@ Page({
 
     },
 
-
     // 点击事件
-    goToList: function(event) {
+    goToList(event) {
         wx.navigateTo({
             url: "/pages/movies/find/find?id=" + event.currentTarget.id
         });
     },
-
-    // input处理函数
+    clickInput(e) {
+        this.setData({
+            isFind: false,
+            isSearchingInput: 'searchInput',
+            isSearchingTitle: 'searchTitle',
+            title: '<返回'
+        });
+    },
+    backto() {
+        if (this.data.title == "<返回") {
+            this.setData({
+                isFind: true,
+                isSearchingInput: "",
+                isSearchingTitle: "",
+                title: '搜索',
+            });
+        }
+    },
+    // 输入input内容搜索
     inputKeyWords(e) {
         let _this = this;
         if (!e.detail.value) {
+            this.setData({
+                arrMovieList: []
+            });
             return;
         }
-        this._throttle(function() {
-            // utils.getMovieListApi(_this._handleSearchData, "https://api.feroad.com/v2/movie/search?q={" + e.detail.value + "}")
+        this.setData({
+            searchKeyWords: e.detail.value
         });
-
+        this._throttle(this._getMovieListApi, this, e.detail.value);
     },
+
+    // 请求数据
+    _getMovieListApi(param) {
+        let _this = this;
+        this.setData({
+            _start: 0
+        });
+        if (_this.data._start == 0) {
+            this.setData({
+                arrMovieList: []
+            });
+        }
+        utils.getMovieListApi(this._handleSearchData, "https://api.feroad.com/v2/movie/search?q={" + param + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
+    },
+    // 处理数据
     _handleSearchData(data) {
         let _this = this;
         let _movieArr = [],
             _box = "";
+
+        // 请求失败
+        if (data == "errorRequest") {
+            wx.hideloading();
+            wx.showToast({
+                title: '请求失败,可能是接口达到上限，请十五分钟后尝试',
+                duration: 2000
+            });
+            this.setData({
+                isShowOk: false
+            });
+        }
+
+        // 下拉列表结束
         if (_this.data._start > data.total) {
             _this.setData({
                 _isEnd: true
@@ -123,10 +214,13 @@ Page({
             arrMovieList: _this.data.arrMovieList.concat(_movieArr)
         });
     },
-    _throttle(method, context) {
-        clearTimeout(method.id);
-        method.id = setTimeout(() => {
-            method.call(context);
-        }, 200);
+    // 函数防抖
+    _throttle(method, context, data) {
+        try {
+            clearTimeout(method.id);
+            method.id = setTimeout(() => {
+                method.call(context, data);
+            }, 1000);
+        } catch (e) {}
     }
 })
