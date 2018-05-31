@@ -1,13 +1,16 @@
 {
     "pages": [
-        "pages/movies/index",
-        "pages/index/index",
-        "pages/logs/logs",
         "pages/teleplay/index",
+        "pages/common/tvitem/tvitem",
+        "pages/index/index",
+        "pages/movies/index",
+        "pages/teleplay/hot/index",
+        "pages/logs/logs",
         "pages/usercenter/index",
         "pages/usercenter/aboutus/index",
         "pages/common/movieitem/movieItem",
-        "pages/movies/find/find"
+        "pages/movies/find/find",
+        "pages/teleplay/schedule/index"
     ],
     "window": {
         "backgroundTextStyle": "#eee",

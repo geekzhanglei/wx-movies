@@ -1,1 +1,45 @@
 /* pages/teleplay/index.wxss */
+.wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width:100%;
+}
+/* 轮播图部分 */
+.wrap-slider {
+    flex:5;
+}
+.swiper {
+    width:100%;
+    height:100%;
+}
+.swiper image {
+  width:100% !important;
+  height: 100% !important;
+}
+/* 选项部分 */
+.wrap-option {
+    flex:1;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin:1rem;
+    color:white;
+}
+.item {
+    width:25%;
+    height: 90%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    padding:0.3rem;
+    box-sizing:border-box;
+}
+
+.item:first-child {
+    background: #53c653;
+}
+.item:last-child {
+    background:#8c3cdd;
+}

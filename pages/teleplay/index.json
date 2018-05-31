@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "电视剧",
+    "navigationBarTitleText": "剧集",
     "usingComponents": {
         "component-error": "../common/component/error/error"
     }

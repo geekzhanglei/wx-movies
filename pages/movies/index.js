@@ -1,5 +1,5 @@
 // pages/movies/index.js
-const utils = require("../../utils/util.js");
+const utils = require("../../utils/util");
 
 Page({
 
@@ -38,12 +38,12 @@ Page({
         let _this = this;
         return function(data) {
             if (data === "errorRequest") {
-              wx.hideLoading();
-              wx.showToast({
-                title: '请求失败，可能接口超限，请稍后重试',
-                duration: 2000
-              })                
-              return;
+                wx.hideLoading();
+                wx.showToast({
+                    title: '请求失败，可能接口超限，请稍后重试',
+                    duration: 2000
+                })
+                return;
             }
             switch (type) {
                 case "comming":

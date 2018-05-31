@@ -1,0 +1,30 @@
+<view class="container">
+    <block wx:if="{{isShow}}">
+        <image wx:if="{{tv.img}}" class="background" src="{{tv.img}}" mode="aspectFill" />
+        <block wx:if="{{tv.cnName}}">
+            <view class="meta">
+                <image class="poster" src="{{tv.img}}" mode="aspectFit" />
+                <text class="title">{{tv.cnName}}({{tv.enName}})</text>
+                <text class="info">{{tv.season}}({{tv.readNum}})</text>
+                <view class="item">
+                    <text class="info">类型：{{tv.type}}</text>
+                    <text class="info" wx:if="{{tv.point}}">评分：{{tv.point}}</text>
+                </view>
+                <view class="item">
+                    <text class="info">续订情况：{{tv.status}}</text>
+                    <text class="info">电视台：{{tv.tv}}</text>
+                </view>
+                <text class="info">导演：{{tv.director}}</text>
+                <text class="info">主演：{{tv.cast}}</text>
+            </view>
+            <view class="item resource">
+                <text class="cont" bindtap="shareLink">点击复制资源外链浏览器打开</text>
+            </view>
+            <view class="summary">
+                <text class="label">摘要：</text>
+                <text class="content">{{tv.des}}</text>
+            </view>
+        </block>
+    </block>
+    <component-error wx:else></component-error>
+</view>

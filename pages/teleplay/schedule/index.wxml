@@ -1,0 +1,19 @@
+<view class="container">
+    <block wx:if="{{false}}">
+        <!-- <image wx:if="{{movie.image}}" class="background" src="{{movie.image}}" mode="aspectFill" />
+        <block wx:if="{{movie.title}}">
+            <view class="meta">
+                <image class="poster" src="{{movie.image}}" mode="aspectFit" />
+                <text class="title">{{movie.title}}({{movie.year}})</text>
+                <text class="info">评分：{{movie.rating}}</text>
+                <text class="info">导演：{{movie.director}}</text>
+                <text class="info">主演：{{movie.casts}}</text>
+            </view>
+            <view class="summary">
+                <text class="label">摘要：</text>
+                <text class="content">{{movie.summary}}</text>
+            </view>
+        </block> -->
+    </block>
+    <component-error wx:else></component-error>
+</view>
