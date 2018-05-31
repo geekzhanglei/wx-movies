@@ -1,31 +1,34 @@
 /* pages/common/list/list.wxss */
 /* 电影列表 */
 text {
-  padding-left:10px;
+  padding-left:0.625rem;
 }
 .item {
     display: flex;
-    padding:10px 0;
     flex-direction: row;
-    border-bottom:1px solid #eee;
+    align-items: center;
+    padding:0.625rem 0;
+    border-bottom:0.0625rem solid #eee;
     overflow: hidden;
-    background:rgb(245, 248, 250); 
+    background:rgb(245, 248, 250);
     font-size:0.8rem;
   }
   .preview {
     flex:2;
-    margin-left:10px;
+    margin-left:0.625rem;
   }
   .preview image {
     width:100%;
-    height:100%;
+    height:180rpx;
+    min-height: 180rpx;
   }
 
   .info {
     flex:7;
-    margin:5px 10px;
+    margin:0.3125rem 0.625rem;
     display: flex;
     flex-direction: column;
+    width:200rpx;
   }
   .info text {
     display: -webkit-box;
@@ -36,7 +39,10 @@ text {
   .movie-title {
     font-weight: 500;
     color:black;
-    padding-left:10px;
+    padding-left:0.625rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .rating {
     float:right;

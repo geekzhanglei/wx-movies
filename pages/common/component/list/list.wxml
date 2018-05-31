@@ -1,12 +1,12 @@
 <view class="wrap">
-    <scroll-view class="movie-list" scroll-x="false" scroll-y="true" upper-threshold="50" lower-threshold="50">
+    <view class="movie-list">
         <view class="item" bindtap="goToDetails" id="{{item.id}}" wx:for="{{listSource}}" wx:key="unique">
             <view class="preview">
                 <image src="{{item.src}}" alt="img is gone" />
             </view>
             <view class="info">
                 <view class="movie-title">{{item.title}}
-                    <text class="rating">{{item.rating}}</text>
+                    <text class="rating" wx:if="{{whichPage!='comming'}}">{{item.rating}}</text>
                 </view>
                 <text class="box">{{item.box}}</text>
                 <text class="type">类型：{{item.type}}</text>
@@ -14,5 +14,5 @@
                 <text class="actors">主演：{{item.actors}}</text>
             </view>
         </view>
-    </scroll-view>
+    </view>
 </view>

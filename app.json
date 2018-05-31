@@ -1,11 +1,14 @@
 {
     "pages": [
-        "pages/movies/index",
         "pages/index/index",
-        "pages/logs/logs",
-        "pages/teleplay/index",
         "pages/usercenter/index",
+        "pages/teleplay/schedule/index",
         "pages/usercenter/aboutus/index",
+        "pages/movies/index",
+        "pages/teleplay/index",
+        "pages/teleplay/hot/index",
+        "pages/common/tvitem/tvitem",
+        "pages/logs/logs",
         "pages/common/movieitem/movieItem",
         "pages/movies/find/find"
     ],

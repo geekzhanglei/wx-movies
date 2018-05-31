@@ -1,7 +1,27 @@
 <!--pages/teleplay/index.wxml-->
 <view class="container">
-    <block class="tv" wx:if="{{false}}">
-        <view>haha</view>
+    <block class="tv" wx:if="{{isShowOk}}">
+        <view class="wrap">
+            <view class="wrap-slider">
+                <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+                    <block wx:for="{{imgUrls}}" wx:key="unique">
+                        <swiper-item bindtap="goToHotTvList" data-source="{{item.link}}" id="slider">
+                            <image src="{{item.img}}" mode="widthFix" class="slide-image" />
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </view>
+            <view class="wrap-option">
+                <view class="item" bindtap="goToHotTvList" id="hottv">
+                    <image class="hot-icon" mode="center" src="../../images/tvIcons/hot.png"></image>
+                    <text>本周热映</text>
+                </view>
+                <view class="item" bindtap="goToHotTvList" id="schedule">
+                    <image class="time-icon" mode="center" src="../../images/tvIcons/time.png"></image>
+                    <text>排期表</text>
+                </view>
+            </view>
+        </view>
     </block>
     <component-error wx:else></component-error>
 </view>

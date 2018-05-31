@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "剧集-排期表",
+    "usingComponents": {
+        "component-error": "../../common/component/error/error"
+    }
+}

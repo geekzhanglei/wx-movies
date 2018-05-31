@@ -4,7 +4,7 @@
   min-height:100vh;
 }
 .userinfo {
-    height:150px;
+    height:9rem;
     background-color: #00B2EE;
     display: flex;
     justify-content:center;
@@ -13,43 +13,46 @@
 }
 
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0.625rem;
   border-radius: 50%;
 }
 
 .userinfo-nickname {
   color: rgb(245, 243, 243);
+  font-size: 1rem;
 }
 
 .usermotto {
-  margin-top: 200px;
+  margin-top: 12.5rem;
 }
 .item-wrap {
-    margin:25px 10px;
+    margin:40rpx 30rpx;
     display:flex;
 }
 .item-wrap image {
-    width: 22px;
-    height: 22px;
+    width: 1rem;
+    height: 1rem;
 }
-.aboutus {
+.item {
     width:100%;
-    height:60px;
+    height:110rpx;
     background:#fafafa;
     display: flex;
     align-items: space-between;
+    /* hack */
+    position: initial;
 }
-.aboutus .flex-left,.aboutus .flex-right {
+.item .flex-left,.item .flex-right {
   display: flex;
   align-items: center;
 }
 .flex-left .left {
-    padding:0 10px;
+    padding:0 0.625rem;
 }
 .flex-left text {
-    font-size: 18px;
+    font-size: 1rem;
     color:#666;
 }
 
@@ -57,4 +60,11 @@
   flex:1;
   display: flex;
   justify-content: flex-end;
+}
+.flex-right image {
+  margin-right:1rem;
+}
+/* 小程序button默认样式是伪元素after设置的 */
+.item::after {
+  display:none;
 }

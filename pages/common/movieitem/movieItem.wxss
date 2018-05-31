@@ -3,42 +3,43 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50rpx 40rpx;
+    padding: 1.5625rem 1.25rem;
     width:100%;
   }
 
   .poster {
-    height: 800rpx;
-    padding:20rpx;
+    height: 21rem;
+    width: 20rem;
+    padding:0.5rem;
   }
 
   .title {
     font-style: 2rem;
     color: #444;
     text-align: center;
-    padding-top: 20rpx;
+    padding-top: 0.625rem;
   }
 
   .info {
     color: #888;
-    margin-top: 20rpx;
+    margin-top: 0.625rem;
     width: 80%;
   }
 
   .summary {
     width: 80%;
-    margin: 30rpx auto;
+    margin: 0.9375rem auto;
   }
 
   .label {
     display: block;
-    margin-bottom: 30rpx;
+    margin-bottom: 0.9375rem;
   }
 
   .content {
     color: #666;
-    font-size: 13px;
-    padding: 2em;
+    font-size: 0.875rem;
+    padding: 2rem;
   }
 
   .background {

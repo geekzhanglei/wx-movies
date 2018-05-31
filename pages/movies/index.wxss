@@ -12,82 +12,88 @@
     /* display: flex;
     align-items: center;
     justify-content: center; */
-           transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
 
 }
 input {
     text-align:center;
     height: 2rem;
-    border:1px solid #ddd;
+    border:0.0625rem solid #ddd;
     background:#edeaea;
-    border-radius:5px;
+    border-radius:0.3125rem;
 }
-.search {
-  flex:2;
-  /* display:flex; */
-  /* flex-direction: column; */
+.active {
+  font-size:0.8rem;
+  position:fixed;
+  top:0;
+  width:100%;
+  line-height:2rem;
+  height:2rem;
+  z-index:999; 
 }
+
 .searchInput {
     margin:0;
-    display: inline-block;
     width:82%;
     border-radius: 0;
     float: right;
     transition: all 200ms ease;
-
 }
 .searchInput input {
     box-sizing: border-box;
-    border-radius: 1px;
+    border-radius: 0.0625rem;
     border:0;
-    border-bottom:1px solid #ddd;
+    border-bottom:0.0625rem solid #ddd;
 }
 .backto {
     width:10%;
     /* flex:1; */
+}
+scroll-view {
+    height:100vh;
+    margin-top:2.2rem;
 }
 .find {
   flex:3;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  border-top:4px solid #eee;
+  border-top:0.25rem solid #eee;
 }
 .title {
     height:2rem;
     line-height:2rem;
-    border-bottom:1px solid #eee;
+    border-bottom:0.0625rem solid #eee;
 }
  title {
-   margin-left:0.3rem;
+   margin-left:0.5rem;
  }
  .searchTitle {
     transition: all 1000ms ease;
     display:inline-block;
     box-sizing: border-box;
     width:18%;
-    padding-right: 0.25rem;
     background: rgb(252, 251, 251);
     border:0;
-    border-right: 1px solid #ddd;
-    border-bottom:1px solid #ddd;
+    border-right: 0.0625rem solid #ddd;
+    border-bottom:0.0625rem solid #ddd;
 }
 
 /* 专题 */
 .item {
     background: rgb(96, 201, 236);
-    height:5rem;
+    height:200rpx;
     margin:0.5rem;
-    border-radius:10rpx;
+    border-radius:0.3125rem;
     position: relative;
-    border:1px solid #ddd;
+    border:0.0625rem solid #ddd;
     overflow:hidden;
 }
 .content {
     display: flex;
     flex:1;
     flex-direction: column;
-    margin:10px;
+    margin:0.625rem;
 }
 .content .row {
     flex:1;
@@ -107,7 +113,7 @@ input {
     opacity: .5;
     position: absolute;
     bottom:0;
-    padding-left:5px;
+    padding-left:0.3125rem;
     box-sizing:border-box;
 }
 .cover text {

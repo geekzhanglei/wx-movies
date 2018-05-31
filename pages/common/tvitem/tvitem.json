@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "剧集",
+  "usingComponents": {
+    "component-error": "../component/error/error"
+  }
+}

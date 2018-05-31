@@ -1,4 +1,4 @@
 <!--pages/movies/find/find.wxml-->
 <view class="container">
-    <component-list list-source="{{arrMovieList}}"></component-list>
+    <component-list list-source="{{arrMovieList}}" which-page="{{optionId}}" class="comp"></component-list>
 </view>

@@ -1,0 +1,74 @@
+.meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5625rem 1.25rem;
+    width:100%;
+  }
+
+  .poster {
+    height: 21rem;
+    width: 20rem;
+    padding:0.5rem;
+  }
+
+  .title {
+    font-style: 2rem;
+    color: #444;
+    text-align: center;
+    padding-top: 0.625rem;
+  }
+
+  .info {
+    color: #888;
+    margin-top: 0.625rem;
+    width: 80%;
+  }
+
+  .summary {
+    width: 80%;
+    margin: 0.9375rem auto;
+  }
+
+.item .info {
+    width: auto;
+}
+
+.label {
+    display: block;
+    margin-bottom: 0.9375rem;
+  }
+
+  .content {
+    color: #666;
+    font-size: 0.875rem;
+    padding: 2rem;
+  }
+
+.background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    opacity: .1;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.resource {
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+}
+
+.resource .cont {
+    color: blue;
+}

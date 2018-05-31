@@ -1,5 +1,6 @@
 // pages/movies/index.js
-const utils = require("../../utils/util.js");
+const utils = require("../../utils/util");
+const globalVars = require("../common/globalVars");
 
 Page({
 
@@ -27,10 +28,10 @@ Page({
     },
     init() {
         let _this = this;
-        utils.getMovieListApi(_this._handleInitImg("comming"), "https://api.feroad.com/v2/movie/coming_soon?start=0&count=1");
-        utils.getMovieListApi(_this._handleInitImg("top250"), "https://api.feroad.com/v2/movie/top250?start=0&count=1");
-        utils.getMovieListApi(_this._handleInitImg("usBook"), "https://api.feroad.com/v2/movie/us_box");
-        utils.getMovieListApi(_this._handleInitImg("ongoing"), "https://api.feroad.com/v2/movie/in_theaters?start=0&count=1");
+        utils.getListApi(_this._handleInitImg("comming"), globalVars.httpsDomain + "/v2/movie/coming_soon?start=0&count=1");
+        utils.getListApi(_this._handleInitImg("top250"), globalVars.httpsDomain + "/v2/movie/top250?start=0&count=1");
+        utils.getListApi(_this._handleInitImg("usBook"), globalVars.httpsDomain + "/v2/movie/us_box");
+        utils.getListApi(_this._handleInitImg("ongoing"), globalVars.httpsDomain + "/v2/movie/in_theaters?start=0&count=1");
 
     },
 
@@ -38,12 +39,13 @@ Page({
         let _this = this;
         return function(data) {
             if (data === "errorRequest") {
-              wx.hideLoading();
-              wx.showToast({
-                title: '请求失败，可能接口超限，请稍后重试',
-                duration: 2000
-              })                
-              return;
+                wx.hideLoading();
+                wx.showToast({
+                    title: '请求失败，可能接口超限，请稍后重试',
+                    duration: 2000,
+                    icon: 'none'
+                })
+                return;
             }
             switch (type) {
                 case "comming":
@@ -89,9 +91,9 @@ Page({
         wx.stopPullDownRefresh();
     },
     /**
-     * 页面上拉触底事件的处理函数
+     * scroll-view页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    scrollToLower() {
         let _this = this;
         // 已没有数据
         if (_this.data._isEnd) {
@@ -104,14 +106,7 @@ Page({
             _start: _this.data._start + _this.data._count
         })
 
-        utils.getMovieListApi(this._handleSearchData, "https://api.feroad.com/v2/movie/search?q={" + _this.data.searchKeyWords + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
+        utils.getListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + _this.data.searchKeyWords + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
     },
 
     // 点击事件
@@ -150,11 +145,11 @@ Page({
         this.setData({
             searchKeyWords: e.detail.value
         });
-        this._throttle(this._getMovieListApi, this, e.detail.value);
+        this._throttle(this._getListApi, this, e.detail.value);
     },
 
     // 请求数据
-    _getMovieListApi(param) {
+    _getListApi(param) {
         let _this = this;
         this.setData({
             _start: 0
@@ -164,7 +159,7 @@ Page({
                 arrMovieList: []
             });
         }
-        utils.getMovieListApi(this._handleSearchData, "https://api.feroad.com/v2/movie/search?q={" + param + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + param + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
     },
     // 处理数据
     _handleSearchData(data) {
@@ -177,7 +172,8 @@ Page({
             wx.hideloading();
             wx.showToast({
                 title: '请求失败,可能是接口达到上限，请十五分钟后尝试',
-                duration: 2000
+                duration: 2000,
+                icon: 'none'
             });
             this.setData({
                 isShowOk: false
@@ -185,11 +181,10 @@ Page({
         }
 
         // 下拉列表结束
-        if (_this.data._start > data.total) {
+        if (_this.data._count > data.subjects.length) {
             _this.setData({
                 _isEnd: true
             });
-            return;
         }
 
         data.subjects.forEach(element => {

@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp();
 const utils = require("../../utils/util.js");
+const globalVars = require("../common/globalVars");
 
 Page({
     data: {
@@ -19,14 +20,14 @@ Page({
         wx.showLoading({
             title: "努力加载中..."
         });
-        utils.getMovieListApi(_this.handleHotMoviesData, 'https://api.feroad.com/v2/movie/in_theaters?start=0&count=' + _this.data._count);
+        utils.getListApi(_this.handleHotMoviesData, globalVars.httpsDomain + '/v2/movie/in_theaters?start=0&count=' + _this.data._count);
     },
     onPullDownRefresh() {
         wx.showNavigationBarLoading();
         this.onLoad();
     },
-    // 下拉刷新
-    onReachBottom: function() {
+    // scroll-view下拉刷新
+    scrolltolower() {
         let _this = this;
         // 已没有数据
         if (_this.data._isEnd) {
@@ -39,8 +40,9 @@ Page({
             _start: _this.data._start + _this.data._count
         })
 
-        utils.getMovieListApi(_this.handleHotMoviesData, "https://api.feroad.com/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getListApi(_this.handleHotMoviesData, globalVars.httpsDomain + "/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
     },
+
     // 转发
     onShareAppMessage: function(res) {
         if (res.from === 'button') {
@@ -49,7 +51,7 @@ Page({
         }
         return {
             title: '影视资讯首页',
-            path: '/page/user?id=123',
+            path: 'pages/index/index',
             success: function(res) {
                 // 转发成功
                 console.log('转发成功');
@@ -69,7 +71,7 @@ Page({
         if (data == "errorRequest") {
             wx.showToast({
                 title: '请求失败，可能达到接口上限',
-                icon:'none',
+                icon: 'none',
                 duration: 2000
             });
             this.setData({
@@ -77,7 +79,7 @@ Page({
             });
         }
         // 下拉结束
-        if (_this.data._start > data.total) {
+        if (_this.data._count > data.subjects.length) {
             _this.setData({
                 _isEnd: true
             });
