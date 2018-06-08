@@ -33,11 +33,26 @@ Page({
                 tvId: options.data.split('/').reverse()[0]
             });
         } else if (options.schedule) {
+            let scheduleData = JSON.parse(options.schedule);
             this.setData({
-                isShow: true,
-                tvType: "schedule",
-                tvId: options.schedule.split('/').reverse()[0]
+                tv: {
+                    cnName: scheduleData.cnName,
+                    enName: scheduleData.enName,
+                    img: scheduleData.img,
+                    type: scheduleData.type,
+                    tv: scheduleData.tv,
+                    des: scheduleData.des,
+                    director: scheduleData.director,
+                    cast: scheduleData.cast,
+                    point: scheduleData.point,
+                    readNum: scheduleData.readNum,
+                    status: scheduleData.status,
+                    link: scheduleData.resource,
+                    screenwriter: scheduleData.screenwriter
+                },
+                isShow: true
             });
+            return;
         } else {}
         console.log(this.data.tvId)
         // 接口请求，回调数据渲染

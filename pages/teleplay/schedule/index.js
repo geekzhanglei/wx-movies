@@ -120,18 +120,19 @@ Page({
             this.setData({
                 list: list
             });
+            console.log(this.data.list)
         } catch (error) {}
         wx.hideLoading();
-
     },
     getDate() {
         let time = new Date();
         return time.getDate();
     },
-    // 点击跳转
+    // 点击跳转????如何传递大量数据给另一个页面
     gotoTvItem(event) {
+        let _this = this;
         wx.navigateTo({
-            url: "/pages/common/tvitem/tvitem?schedule=" + event.currentTarget.dataset.schedule
+            url: "/pages/common/tvitem/tvitem?schedule=" + JSON.stringify(_this.data.list[event.currentTarget.dataset.schedule])
         });
     },
 

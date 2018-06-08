@@ -4,7 +4,8 @@
             <span class="cont">今日播出-{{date}}</span>
         </view>
         <view class="wrap-list">
-            <view class="item" wx:for="{{list}}" wx:for-item="ele" wx:key="uniqueScheduleList" bindtap="gotoTvItem" data-schedule="{{ele.link}}">
+            <view class="item" wx:for="{{list}}" wx:for-item="ele" wx:for-index="idx" wx:key="uniqueScheduleList" bindtap="gotoTvItem"
+                data-schedule="{{idx}}">
                 <view class="img">
                     <image model="aspectFit" src="{{ele.img}}"></image>
                 </view>

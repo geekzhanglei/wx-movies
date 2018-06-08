@@ -5,7 +5,7 @@
             <view class="meta">
                 <image class="poster" src="{{tv.img}}" mode="aspectFit" />
                 <text class="title">{{tv.cnName}}({{tv.enName}})</text>
-                <text class="info">{{tv.season}}({{tv.readNum}})</text>
+                <text class="info" wx:if="{{tv.readNum}}">{{tv.season}}({{tv.readNum}})</text>
                 <view class="item">
                     <text class="info">类型：{{tv.type}}</text>
                     <text class="info" wx:if="{{tv.point}}">评分：{{tv.point}}</text>
