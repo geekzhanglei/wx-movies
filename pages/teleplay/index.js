@@ -1,5 +1,6 @@
 // pages/teleplay/index.js
 const utils = require("../../utils/util");
+const globalVars = require("../common/globalVars");
 
 Page({
 
@@ -23,7 +24,7 @@ Page({
         wx.showLoading({
             title: "努力加载中..."
         });
-        utils.getMovieListApi(_this._handleSliderData, 'https://api.feroad.com/node/slider?start=0&count=' + _this.data._count);
+        utils.getMovieListApi(_this._handleSliderData, globalVars.httpsDomain + '/node/slider?start=0&count=' + _this.data._count);
     },
 
 
@@ -42,8 +43,8 @@ Page({
         console.log(data)
         try {
             data.forEach(element => {
-                element.img = element.img.replace("files.zmzjstu.com", "api.feroad.com");
-                element.link = element.link.replace("www.zimuzu.tv", "api.feroad.com");
+                element.img = element.img.replace("http://files.zmzjstu.com", globalVars.httpsDomain);
+                element.link = element.link.replace("http://www.zimuzu.tv", globalVars.httpsDomain);
             });
         } catch (e) {}
         this.setData({

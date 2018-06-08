@@ -1,6 +1,7 @@
 {
     "pages": [
         "pages/teleplay/index",
+        "pages/teleplay/schedule/index",
         "pages/common/tvitem/tvitem",
         "pages/index/index",
         "pages/movies/index",
@@ -9,8 +10,7 @@
         "pages/usercenter/index",
         "pages/usercenter/aboutus/index",
         "pages/common/movieitem/movieItem",
-        "pages/movies/find/find",
-        "pages/teleplay/schedule/index"
+        "pages/movies/find/find"
     ],
     "window": {
         "backgroundTextStyle": "#eee",

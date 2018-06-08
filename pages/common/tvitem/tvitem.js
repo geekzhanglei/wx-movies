@@ -1,4 +1,4 @@
-// pages/common/tvitem/tvitem.js
+const globalVars = require("../../common/globalVars");
 
 Page({
 
@@ -31,6 +31,12 @@ Page({
                 isShow: true,
                 tvType: "slider",
                 tvId: options.data.split('/').reverse()[0]
+            });
+        } else if (options.schedule) {
+            this.setData({
+                isShow: true,
+                tvType: "schedule",
+                tvId: options.schedule.split('/').reverse()[0]
             });
         } else {}
         console.log(this.data.tvId)
@@ -85,7 +91,7 @@ Page({
     getMovieDetailsApi(fn) {
         let _this = this;
         wx.request({
-            url: 'http://api.feroad.com/node/tv?type=' + _this.data.tvType + "&id=" + _this.data.tvId,
+            url: globalVars.httpsDomain + '/node/tv?type=' + _this.data.tvType + "&id=" + _this.data.tvId,
             header: {
                 'content-type': 'json' // 默认值
             },

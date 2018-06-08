@@ -1,5 +1,6 @@
 // pages/movies/index.js
 const utils = require("../../utils/util");
+const globalVars = require("../common/globalVars");
 
 Page({
 
@@ -27,10 +28,10 @@ Page({
     },
     init() {
         let _this = this;
-        utils.getMovieListApi(_this._handleInitImg("comming"), "https://api.feroad.com/v2/movie/coming_soon?start=0&count=1");
-        utils.getMovieListApi(_this._handleInitImg("top250"), "https://api.feroad.com/v2/movie/top250?start=0&count=1");
-        utils.getMovieListApi(_this._handleInitImg("usBook"), "https://api.feroad.com/v2/movie/us_box");
-        utils.getMovieListApi(_this._handleInitImg("ongoing"), "https://api.feroad.com/v2/movie/in_theaters?start=0&count=1");
+        utils.getMovieListApi(_this._handleInitImg("comming"), globalVars.httpsDomain + "/v2/movie/coming_soon?start=0&count=1");
+        utils.getMovieListApi(_this._handleInitImg("top250"), globalVars.httpsDomain + "/v2/movie/top250?start=0&count=1");
+        utils.getMovieListApi(_this._handleInitImg("usBook"), globalVars.httpsDomain + "/v2/movie/us_box");
+        utils.getMovieListApi(_this._handleInitImg("ongoing"), globalVars.httpsDomain + "/v2/movie/in_theaters?start=0&count=1");
 
     },
 
@@ -104,7 +105,7 @@ Page({
             _start: _this.data._start + _this.data._count
         })
 
-        utils.getMovieListApi(this._handleSearchData, "https://api.feroad.com/v2/movie/search?q={" + _this.data.searchKeyWords + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getMovieListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + _this.data.searchKeyWords + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
     },
 
     /**
@@ -164,7 +165,7 @@ Page({
                 arrMovieList: []
             });
         }
-        utils.getMovieListApi(this._handleSearchData, "https://api.feroad.com/v2/movie/search?q={" + param + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getMovieListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + param + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
     },
     // 处理数据
     _handleSearchData(data) {

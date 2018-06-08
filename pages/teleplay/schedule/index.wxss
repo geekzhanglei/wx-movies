@@ -1,1 +1,77 @@
-/* pages/teleplay/schedule/index.wxss */
+.wrap-list {
+    width:100%;
+    background: #eee;
+    display: flex;
+    flex-direction: column;
+}
+.wrap-title {
+    line-height: 2rem;
+    height: 2rem;
+    background:#eee;
+    width:100%;
+    text-align:center;
+    border:1px solid #ddd;
+}
+.wrap-list .item {
+    display: flex;
+    flex-direction: row;
+    background: rgb(245, 248, 250);
+    margin:0.2rem;
+}
+.wrap-list .item:last-child {
+    margin-bottom: 0.4rem;
+}
+.wrap-list .item .img {
+    flex:1;
+    padding:0.2rem;
+}
+.wrap-list .item .cont {
+    flex:4;
+    color:black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.wrap-list .item .img image {
+    width:100%;
+    height: 100%;
+}
+.wrap-list .item .cont .infos {
+    display: flex;
+    flex-direction: column;
+    padding:0.3rem;
+}
+.wrap-list .item .cont .status .icon {
+    max-width: 4rem;
+}
+.wrap-list .item .cont .infos text {
+    line-height: 1.2rem;
+    height: 1.2rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+.wrap-list .item .cont .infos text:first-child {
+    margin-bottom: 0.1rem;
+    font-weight: bold;
+    color:black;
+    font-size: 1rem;
+}
+.wrap-list .item .cont .infos text:last-child {
+    background:#dddddd;
+    width:4rem;
+    border-radius: 0.2rem;
+    text-align: center;
+}
+.wrap-list .item .cont .status {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin:0 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.wrap-list .item .cont .status .icon {
+    margin-top:0.3rem;
+}
+
+

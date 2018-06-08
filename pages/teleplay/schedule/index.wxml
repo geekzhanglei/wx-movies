@@ -1,19 +1,26 @@
 <view class="container">
-    <block wx:if="{{false}}">
-        <!-- <image wx:if="{{movie.image}}" class="background" src="{{movie.image}}" mode="aspectFill" />
-        <block wx:if="{{movie.title}}">
-            <view class="meta">
-                <image class="poster" src="{{movie.image}}" mode="aspectFit" />
-                <text class="title">{{movie.title}}({{movie.year}})</text>
-                <text class="info">评分：{{movie.rating}}</text>
-                <text class="info">导演：{{movie.director}}</text>
-                <text class="info">主演：{{movie.casts}}</text>
+    <block wx:if="{{isShowOk}}">
+        <view class="wrap-title">
+            <span class="cont">今日播出-{{date}}</span>
+        </view>
+        <view class="wrap-list">
+            <view class="item" wx:for="{{list}}" wx:for-item="ele" wx:key="uniqueScheduleList" bindtap="gotoTvItem" data-schedule="{{ele.link}}">
+                <view class="img">
+                    <image model="aspectFit" src="{{ele.img}}"></image>
+                </view>
+                <view class="cont">
+                    <view class="infos">
+                        <text class="title">{{ele.cnName}}</text>
+                        <text class="type">{{ele.type}}</text>
+                        <text class="episode">{{ele.episode}}</text>
+                    </view>
+                    <view class="status">
+                        <icon type="{{ele.icon.status}}" color="{{ele.icon.color}}" class="icon"></icon>
+                        <text class="text">{{ele.status}}</text>
+                    </view>
+                </view>
             </view>
-            <view class="summary">
-                <text class="label">摘要：</text>
-                <text class="content">{{movie.summary}}</text>
-            </view>
-        </block> -->
+        </view>
     </block>
     <component-error wx:else></component-error>
 </view>

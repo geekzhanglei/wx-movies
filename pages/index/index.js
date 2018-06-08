@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp();
 const utils = require("../../utils/util.js");
+const globalVars = require("../common/globalVars");
 
 Page({
     data: {
@@ -19,7 +20,7 @@ Page({
         wx.showLoading({
             title: "努力加载中..."
         });
-        utils.getMovieListApi(_this.handleHotMoviesData, 'https://api.feroad.com/v2/movie/in_theaters?start=0&count=' + _this.data._count);
+        utils.getMovieListApi(_this.handleHotMoviesData, globalVars.httpsDomain + '/v2/movie/in_theaters?start=0&count=' + _this.data._count);
     },
     onPullDownRefresh() {
         wx.showNavigationBarLoading();
@@ -39,7 +40,7 @@ Page({
             _start: _this.data._start + _this.data._count
         })
 
-        utils.getMovieListApi(_this.handleHotMoviesData, "https://api.feroad.com/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getMovieListApi(_this.handleHotMoviesData, globalVars.httpsDomain + "/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
     },
     // 转发
     onShareAppMessage: function(res) {
@@ -69,7 +70,7 @@ Page({
         if (data == "errorRequest") {
             wx.showToast({
                 title: '请求失败，可能达到接口上限',
-                icon:'none',
+                icon: 'none',
                 duration: 2000
             });
             this.setData({

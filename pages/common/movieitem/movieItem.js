@@ -1,5 +1,6 @@
 // pages/common/movieItem.js
 const utils = require("../../../utils/util.js");
+const globalVars = require("../../common/globalVars");
 
 Page({
 
@@ -39,7 +40,7 @@ Page({
         // 获取电影详情接口
         function getMovieDetailsApi(fn) {
             wx.request({
-                url: 'https://api.feroad.com/v2/movie/subject/' + options.id,
+                url: globalVars.httpsDomain + '/v2/movie/subject/' + options.id,
                 header: {
                     'content-type': 'json' // 默认值
                 },
