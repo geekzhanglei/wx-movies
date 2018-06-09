@@ -1,7 +1,15 @@
 <view class="container">
     <block wx:if="{{isShowOk}}">
         <view class="wrap-title">
-            <span class="cont">今日播出-{{date}}</span>
+            <span class="cont" bindtap="changeSchedule"  wx:if="{{!isShowSelect}}">
+                <span>{{date}} </span>
+                <span> {{whichDay}}</span>
+            </span>
+              <picker-view wx:else class="cont" indicator-style="height: 2rem;" style="width: 100%; height: 4rem;" value="{{value}}" bindchange="bindChange">
+                <picker-view-column>
+                    <view wx:for="{{days}}" wx:key="item" style="line-height: 2rem">本月{{item+1}}日</view>
+                </picker-view-column>
+              </picker-view>
         </view>
         <view class="wrap-list">
             <view class="item" wx:for="{{list}}" wx:for-item="ele" wx:for-index="idx" wx:key="uniqueScheduleList" bindtap="gotoTvItem"

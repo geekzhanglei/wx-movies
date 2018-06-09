@@ -57,7 +57,7 @@ const getMovieListApi = (callback, url) => {
 }
 
 // 处理票房数据
-const handleBox = function(data) {
+const handleBox = (data) => {
     console.log(data)
     let res = 0;
     switch (true) {
@@ -77,10 +77,17 @@ const handleBox = function(data) {
     return res;
 }
 
+// 获取某个月的天数：原理是取某个月的第0天，也就是上个月的最后一天的天数
+const days = (year, month) => {
+    let d = new Date(year, month, 0);
+    return d.getDate();
+}
+
 module.exports = {
-    formatTime: formatTime,
-    getEveryItem: getEveryItem,
-    handleRating: handleRating,
-    getMovieListApi: getMovieListApi,
-    handleBox: handleBox
+    formatTime,
+    getEveryItem,
+    handleRating,
+    getMovieListApi,
+    handleBox,
+    days
 }

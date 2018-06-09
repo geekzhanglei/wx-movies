@@ -10,7 +10,13 @@ Page({
         isShowOk: true,
         _start: 0,
         _count: 1,
-        list: []
+        list: [],
+        date: 1,
+        days: [11, 2, 1, 3, 4, 5],
+        isShowSelect: false,
+        value: [],
+        whichDay: '',
+        timer: ''
     },
 
     /**
@@ -23,10 +29,14 @@ Page({
         });
         // 获取当前日期
         this.setData({
-            _start: _this.getDate()
+            _start: _this.getDate() - 1,
+            whichDay: "(今天)"
         });
         // 请求接口
         utils.getMovieListApi(_this._handleScheduleData, `${globalVars.httpsDomain}/node/schedule?start=${_this.data._start}&count=${_this.data._count}`);
+        // 计算当月天数
+
+        this.initDays();
     },
 
     /**
@@ -66,12 +76,7 @@ Page({
     // 自定义函数
     _handleScheduleData(data) {
         let _this = this;
-        // 下拉结束
-        // if (_this.data._start > data.length) {
-        //     _this.setData({
-        //         _isEnd: true
-        //     });
-        // }
+
         if (data == "errorRequest") {
             wx.hideLoading();
             wx.hideNavigationBarLoading();
@@ -89,7 +94,7 @@ Page({
                 _tmp;
 
             this.setData({
-                date: _data.time
+                date: _data.time,
             });
             for (let i = 0, l = _data.links.length; i < l; i++) {
                 obj.link = `${globalVars.httpsDomain}${_data.links[i]}`;
@@ -128,12 +133,64 @@ Page({
         let time = new Date();
         return time.getDate();
     },
-    // 点击跳转????如何传递大量数据给另一个页面
+    // 点击跳转
     gotoTvItem(event) {
         let _this = this;
         wx.navigateTo({
             url: "/pages/common/tvitem/tvitem?schedule=" + JSON.stringify(_this.data.list[event.currentTarget.dataset.schedule])
         });
     },
+    initDays() {
+        let time = new Date();
+        let daysNum = utils.days(time.getFullYear(), time.getMonth() + 1);
+        let _days = new Array(daysNum).fill("").map((ele, index) => index);
+        this.setData({
+            days: _days,
+            value: [time.getDate() - 1]
+        });
+    },
+    changeSchedule() {
+        this.setData({
+            isShowSelect: true
+        });
+    },
+    bindChange(e) {
+        let _this = this,
+            value, _whichDay, _timeId;
+        value = Number(e.detail.value[0]) - Number(this.getDate()) + 1;
+        switch (value) {
+            case 0:
+                _whichDay = "(今天)"
+                break;
+            case -1:
+                _whichDay = "(昨天)"
+                break;
+            case -2:
+                _whichDay = "(前天)"
+                break;
+            case 1:
+                _whichDay = "(明天)"
+                break;
+            case 2:
+                _whichDay = "(后天)"
+                break;
+            default:
+                _whichDay = "";
+                break;
+        }
 
-})
+        clearTimeout(this.data.timeId);
+        _timeId = setTimeout(() => {
+            utils.getMovieListApi(_this._handleScheduleData, `${globalVars.httpsDomain}/node/schedule?start=${e.detail.value[0]}&count=${_this.data._count}`);
+            this.setData({
+                whichDay: _whichDay,
+                isShowSelect: false
+            });
+            console.log('一秒空闲后进入')
+        }, 1000);
+        this.setData({
+            timeId: _timeId
+        });
+
+    }
+});
