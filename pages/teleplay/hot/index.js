@@ -22,8 +22,8 @@ Page({
         wx.showLoading({
             title: "努力加载中..."
         });
-        utils.getMovieListApi(_this._handleHotTvData, globalVars.httpsDomain + '/node/hottv?start=0&count=' + _this.data._count);
-        // utils.getMovieListApi(_this._handleHotTvData, 'http://127.0.0.1:8080/node/hottv?start=0&count=' + _this.data._count);
+        utils.getListApi(_this._handleHotTvData, globalVars.httpsDomain + '/node/hottv?start=0&count=' + _this.data._count);
+        // utils.getListApi(_this._handleHotTvData, 'http://127.0.0.1:8080/node/hottv?start=0&count=' + _this.data._count);
     },
 
     /**
@@ -82,7 +82,7 @@ Page({
             _start: _this.data._start + _this.data._count
         })
 
-        utils.getMovieListApi(_this._handleHotTvData, globalVars.httpsDomain + "/node/hottv?start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getListApi(_this._handleHotTvData, globalVars.httpsDomain + "/node/hottv?start=" + _this.data._start + "&count=" + _this.data._count);
     },
 
     /**

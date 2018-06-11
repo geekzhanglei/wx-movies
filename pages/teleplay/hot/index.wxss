@@ -5,20 +5,21 @@
     position:fixed;
     top:0;
     width:100%;
-    line-height: 1.5rem;
+    line-height: 2rem;
+    height: 2rem;
     padding-left:0.5rem;
     z-index:999;
 }
 .item {
     flex:1;
-    height:200px;
-    width:100px;
+    height:10rem;
+    width:6.25rem;
     padding:0 0.5rem;
     display: flex;
     flex-direction: column;
 }
-.wrap { 
-    margin-top:1.5rem;
+.wrap {
+    margin-top:2.5rem;
     padding:0.5rem 0;
 }
 .row {
@@ -37,7 +38,7 @@
     width: 3rem;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1rem;
-    padding: 8px 0 3px 0;
+    padding: 0.5rem 0 0.1875rem 0;
     background-color: rgba(0, 0, 0, 0.6);
     text-align: center;
      transform: rotate(45deg);
@@ -50,7 +51,7 @@
     height: 1rem;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1rem;
-    padding: 8px 0 3px 0;
+    padding: 0.3rem 0;
     background-color: rgba(0, 0, 0, 0.6);
     text-align: center;
     font-size: 0.75rem;

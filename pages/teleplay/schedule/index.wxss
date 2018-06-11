@@ -13,7 +13,7 @@ page {
     background: #eee;
     width: 100%;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 0.0625rem solid #ddd;
 }
 
 .wrap-title .cont:first-child {
@@ -34,7 +34,7 @@ page {
 
 .wrap-list .item .img {
     flex: 1;
-    padding: 0.2rem;
+    padding: 0.1rem 0.2rem;
 }
 
 .wrap-list .item .cont {

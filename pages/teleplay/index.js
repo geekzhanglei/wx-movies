@@ -24,7 +24,7 @@ Page({
         wx.showLoading({
             title: "努力加载中..."
         });
-        utils.getMovieListApi(_this._handleSliderData, globalVars.httpsDomain + '/node/slider?start=0&count=' + _this.data._count);
+        utils.getListApi(_this._handleSliderData, globalVars.httpsDomain + '/node/slider?start=0&count=' + _this.data._count);
     },
 
 

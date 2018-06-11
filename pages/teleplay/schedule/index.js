@@ -33,7 +33,7 @@ Page({
             whichDay: "(今天)"
         });
         // 请求接口
-        utils.getMovieListApi(_this._handleScheduleData, `${globalVars.httpsDomain}/node/schedule?start=${_this.data._start}&count=${_this.data._count}`);
+        utils.getListApi(_this._handleScheduleData, `${globalVars.httpsDomain}/node/schedule?start=${_this.data._start}&count=${_this.data._count}`);
         // 计算当月天数
 
         this.initDays();
@@ -181,7 +181,7 @@ Page({
 
         clearTimeout(this.data.timeId);
         _timeId = setTimeout(() => {
-            utils.getMovieListApi(_this._handleScheduleData, `${globalVars.httpsDomain}/node/schedule?start=${e.detail.value[0]}&count=${_this.data._count}`);
+            utils.getListApi(_this._handleScheduleData, `${globalVars.httpsDomain}/node/schedule?start=${e.detail.value[0]}&count=${_this.data._count}`);
             this.setData({
                 whichDay: _whichDay,
                 isShowSelect: false

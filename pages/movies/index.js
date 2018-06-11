@@ -28,10 +28,10 @@ Page({
     },
     init() {
         let _this = this;
-        utils.getMovieListApi(_this._handleInitImg("comming"), globalVars.httpsDomain + "/v2/movie/coming_soon?start=0&count=1");
-        utils.getMovieListApi(_this._handleInitImg("top250"), globalVars.httpsDomain + "/v2/movie/top250?start=0&count=1");
-        utils.getMovieListApi(_this._handleInitImg("usBook"), globalVars.httpsDomain + "/v2/movie/us_box");
-        utils.getMovieListApi(_this._handleInitImg("ongoing"), globalVars.httpsDomain + "/v2/movie/in_theaters?start=0&count=1");
+        utils.getListApi(_this._handleInitImg("comming"), globalVars.httpsDomain + "/v2/movie/coming_soon?start=0&count=1");
+        utils.getListApi(_this._handleInitImg("top250"), globalVars.httpsDomain + "/v2/movie/top250?start=0&count=1");
+        utils.getListApi(_this._handleInitImg("usBook"), globalVars.httpsDomain + "/v2/movie/us_box");
+        utils.getListApi(_this._handleInitImg("ongoing"), globalVars.httpsDomain + "/v2/movie/in_theaters?start=0&count=1");
 
     },
 
@@ -105,7 +105,7 @@ Page({
             _start: _this.data._start + _this.data._count
         })
 
-        utils.getMovieListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + _this.data.searchKeyWords + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + _this.data.searchKeyWords + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
     },
 
     /**
@@ -151,11 +151,11 @@ Page({
         this.setData({
             searchKeyWords: e.detail.value
         });
-        this._throttle(this._getMovieListApi, this, e.detail.value);
+        this._throttle(this._getListApi, this, e.detail.value);
     },
 
     // 请求数据
-    _getMovieListApi(param) {
+    _getListApi(param) {
         let _this = this;
         this.setData({
             _start: 0
@@ -165,7 +165,7 @@ Page({
                 arrMovieList: []
             });
         }
-        utils.getMovieListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + param + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + param + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
     },
     // 处理数据
     _handleSearchData(data) {

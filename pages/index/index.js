@@ -20,7 +20,7 @@ Page({
         wx.showLoading({
             title: "努力加载中..."
         });
-        utils.getMovieListApi(_this.handleHotMoviesData, globalVars.httpsDomain + '/v2/movie/in_theaters?start=0&count=' + _this.data._count);
+        utils.getListApi(_this.handleHotMoviesData, globalVars.httpsDomain + '/v2/movie/in_theaters?start=0&count=' + _this.data._count);
     },
     onPullDownRefresh() {
         wx.showNavigationBarLoading();
@@ -40,7 +40,7 @@ Page({
             _start: _this.data._start + _this.data._count
         })
 
-        utils.getMovieListApi(_this.handleHotMoviesData, globalVars.httpsDomain + "/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
+        utils.getListApi(_this.handleHotMoviesData, globalVars.httpsDomain + "/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
     },
     // 转发
     onShareAppMessage: function(res) {

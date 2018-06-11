@@ -36,7 +36,7 @@ const handleRating = rating => {
 }
 
 // 获取数据列表
-const getMovieListApi = (callback, url) => {
+const getListApi = (callback, url) => {
     wx.request({
         url: url,
         header: {
@@ -87,7 +87,7 @@ module.exports = {
     formatTime,
     getEveryItem,
     handleRating,
-    getMovieListApi,
+    getListApi,
     handleBox,
     days
 }
