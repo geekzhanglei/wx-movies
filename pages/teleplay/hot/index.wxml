@@ -2,7 +2,7 @@
     <view class="title">
         <text>本周最热</text>
     </view>
-    <view class="wrap">
+    <scroll-view class="wrap" bindscrolltolower="scrolltolower" scroll-y="true" lower-threshold="50">
         <view class="row" wx:for="{{rowArr}}" wx:for-item="rowData" wx:key="uniqueList">
             <view class="item" wx:for="{{rowData}}" wx:for-item="ele" wx:key="uniqueDetails">
                 <view class="wrap-img" bindtap="gotoDetail" data-link="{{ele.link}}">
@@ -13,5 +13,5 @@
                 <text class="des">{{ele.cnName}}</text>
             </view>
         </view>
-    </view>
+    </scroll-view>
 </view>

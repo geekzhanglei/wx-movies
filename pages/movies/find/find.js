@@ -132,7 +132,7 @@ Page({
             })
         }
         // 列表已下拉完
-        if (_this.data._start > data.total) {
+        if (_this.data._count > data.subjects.length) {
             _this.setData({
                 _isEnd: true
             });

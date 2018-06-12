@@ -1,6 +1,6 @@
 <!--pages/movies/index.wxml-->
 <view class="movie" wx:if="{{isShowOk}}">
-    <view class="search">
+    <view class="{{isFind?'search':'active'}}">
         <view class="title {{isSearchingTitle}}" bindtap="backto">
             <title>{{title}}</title>
         </view>
@@ -43,7 +43,7 @@
             </view>
         </view>
     </view>
-    <scroll-view wx:else scroll-y="true" upper-threshold="50" lower-threshold="50">
+    <scroll-view wx:else scroll-y="true" bindscrolltolower="scrollToLower" upper-threshold="50" lower-threshold="50">
         <component-list list-source="{{arrMovieList}}"></component-list>
     </scroll-view>
 </view>

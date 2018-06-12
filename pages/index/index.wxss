@@ -4,11 +4,19 @@
 }
 /* 标题部分  */
 .title {
-  background:#eee;
+  font-size:0.8rem;
+  color:#888888;
+  background-color:#eee;
+  position:fixed;
+  top:0;
+  width:100%;
+  line-height:2rem;
   height:2rem;
-  line-height: 2rem;
+  padding-left:0.5rem;
+  z-index:999;
 }
 .wrap-list {
+    margin-top:2.2rem;
     height:100vh;
 }
 text {

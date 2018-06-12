@@ -2,7 +2,7 @@
     <block wx:if="{{isShow}}">
         <image wx:if="{{tv.img}}" class="background" src="{{tv.img}}" mode="aspectFill" />
         <block wx:if="{{tv.cnName}}">
-            <view class="meta">
+             <view class="meta">
                 <image class="poster" src="{{tv.img}}" mode="aspectFit" />
                 <text class="title">{{tv.cnName}}({{tv.enName}})</text>
                 <text class="info" wx:if="{{tv.readNum}}">{{tv.season}}({{tv.readNum}})</text>
@@ -16,7 +16,7 @@
                 </view>
                 <text class="info">导演：{{tv.director}}</text>
                 <text class="info">主演：{{tv.cast}}</text>
-            </view>
+            </view> 
             <view class="item resource">
                 <text class="cont" bindtap="shareLink">点击复制资源外链浏览器打开</text>
             </view>

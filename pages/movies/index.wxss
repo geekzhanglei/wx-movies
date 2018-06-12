@@ -22,19 +22,22 @@ input {
     background:#edeaea;
     border-radius:0.3125rem;
 }
-.search {
-  flex:2;
-  /* display:flex; */
-  /* flex-direction: column; */
+.active {
+  font-size:0.8rem;
+  position:fixed;
+  top:0;
+  width:100%;
+  line-height:2rem;
+  height:2rem;
+  z-index:999; 
 }
+
 .searchInput {
     margin:0;
-    display: inline-block;
     width:82%;
     border-radius: 0;
     float: right;
     transition: all 200ms ease;
-
 }
 .searchInput input {
     box-sizing: border-box;
@@ -48,6 +51,7 @@ input {
 }
 scroll-view {
     height:100vh;
+    margin-top:2.2rem;
 }
 .find {
   flex:3;
@@ -62,14 +66,13 @@ scroll-view {
     border-bottom:0.0625rem solid #eee;
 }
  title {
-   margin-left:0.3rem;
+   margin-left:0.5rem;
  }
  .searchTitle {
     transition: all 1000ms ease;
     display:inline-block;
     box-sizing: border-box;
     width:18%;
-    padding-right: 0.25rem;
     background: rgb(252, 251, 251);
     border:0;
     border-right: 0.0625rem solid #ddd;

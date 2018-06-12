@@ -9,7 +9,10 @@ Page({
         isShow: false,
         tv: [],
         tvId: '',
-        tvType: ''
+        tvType: '',
+        resourceDetail: '',
+        resourceLink: 'http://zmz003.com/404.html',
+        _isLoadingLink: true
     },
 
     /**
@@ -24,14 +27,20 @@ Page({
             this.setData({
                 isShow: true,
                 tvType: "hot",
-                tvId: options.link.split('/').reverse()[0]
+                tvId: options.link.split('/').reverse()[0],
+                resourceDetail: options.link
             });
+            // 接口请求，回调数据渲染
+            this.getMovieDetailsApi(_this.renderFunc);
         } else if (options.data) {
             this.setData({
                 isShow: true,
                 tvType: "slider",
-                tvId: options.data.split('/').reverse()[0]
+                tvId: options.data.split('/').reverse()[0],
+                resourceDetail: options.data
             });
+            // 接口请求，回调数据渲染
+            this.getMovieDetailsApi(_this.renderFunc);
         } else if (options.schedule) {
             let scheduleData = JSON.parse(options.schedule);
             this.setData({
@@ -50,33 +59,57 @@ Page({
                     link: scheduleData.resource,
                     screenwriter: scheduleData.screenwriter
                 },
-                isShow: true
+                isShow: true,
+                resourceDetail: scheduleData.link
             });
-            return;
         } else {}
-        console.log(this.data.tvId)
-        // 接口请求，回调数据渲染
-        this.getMovieDetailsApi(_this.renderFunc);
+        // 更新资源链接
+        this.refreshSorLin();
     },
 
 
     /**
      * 自定义函数
      */
-
-    shareLink() {
-        console.log('已点击：' + this.data.tv.link)
+    refreshSorLin() {
         let _this = this;
-        wx.setClipboardData({
-            data: _this.data.tv.link,
+        wx.request({
+            url: `${globalVars.httpsDomain}/node/resource?id=${_this.data.resourceDetail.split('/').reverse()[0]}`,
+            method: 'GET',
+            header: {
+                'content-type': 'text/plain' // 默认值
+            },
             success: function(res) {
-                wx.showToast({
-                    icon: 'none',
-                    title: '复制成功，请在浏览器中打开',
-                    duration: 2000
+                _this.setData({
+                    resourceLink: res.data,
+                    _isLoadingLink: false
                 });
+            },
+            fail: function(err) {
+                console.log('网络错误');
             }
         })
+    },
+    shareLink() {
+        let _this = this;
+        if (this.data._isLoadingLink) {
+            wx.showToast({
+                icon: 'none',
+                title: '正在努力搜索资源，请几秒后重试',
+                duration: 2000
+            });
+        } else {
+            wx.setClipboardData({
+                data: _this.data.resourceLink,
+                success: function(res) {
+                    wx.showToast({
+                        icon: 'none',
+                        title: '复制成功，请在浏览器中打开',
+                        duration: 2000
+                    });
+                }
+            })
+        }
     },
     renderFunc(data) {
         this.setData({

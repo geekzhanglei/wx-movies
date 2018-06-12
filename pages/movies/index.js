@@ -90,9 +90,9 @@ Page({
         wx.stopPullDownRefresh();
     },
     /**
-     * 页面上拉触底事件的处理函数
+     * scroll-view页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    scrollToLower() {
         let _this = this;
         // 已没有数据
         if (_this.data._isEnd) {
@@ -186,7 +186,7 @@ Page({
         }
 
         // 下拉列表结束
-        if (_this.data._start > data.total) {
+        if (_this.data._count > data.subjects.length) {
             _this.setData({
                 _isEnd: true
             });

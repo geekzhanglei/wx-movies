@@ -21,6 +21,7 @@
 .wrap {
     margin-top:2.5rem;
     padding:0.5rem 0;
+    height: 100vh;
 }
 .row {
     display: flex;

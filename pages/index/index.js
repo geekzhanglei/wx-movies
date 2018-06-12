@@ -26,8 +26,8 @@ Page({
         wx.showNavigationBarLoading();
         this.onLoad();
     },
-    // 下拉刷新
-    onReachBottom: function() {
+    // scroll-view下拉刷新
+    scrolltolower() {
         let _this = this;
         // 已没有数据
         if (_this.data._isEnd) {
@@ -42,6 +42,7 @@ Page({
 
         utils.getListApi(_this.handleHotMoviesData, globalVars.httpsDomain + "/v2/movie/in_theaters?start=" + _this.data._start + "&count=" + _this.data._count);
     },
+
     // 转发
     onShareAppMessage: function(res) {
         if (res.from === 'button') {
@@ -78,7 +79,7 @@ Page({
             });
         }
         // 下拉结束
-        if (_this.data._start > data.total) {
+        if (_this.data._count > data.subjects.length) {
             _this.setData({
                 _isEnd: true
             });

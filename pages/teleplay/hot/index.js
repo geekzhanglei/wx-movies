@@ -68,20 +68,22 @@ Page({
         wx.showNavigationBarLoading();
         this.onLoad();
     },
-    // 下拉刷新
-    onReachBottom: function() {
+    // scroll-view下拉刷新
+    scrolltolower() {
+        console.log('走着呢');
         let _this = this;
         // 已没有数据
         if (_this.data._isEnd) {
             return;
         }
+        console.log('这里');
+
         wx.showLoading({
             title: "加载中..."
         });
         _this.setData({
             _start: _this.data._start + _this.data._count
         })
-
         utils.getListApi(_this._handleHotTvData, globalVars.httpsDomain + "/node/hottv?start=" + _this.data._start + "&count=" + _this.data._count);
     },
 
@@ -105,7 +107,8 @@ Page({
         let _rowNum = 1;
 
         // 下拉结束
-        if (_this.data._start > data.length) {
+        console.log(_this.data._count, data.length)
+        if (_this.data._count > data.length) {
             _this.setData({
                 _isEnd: true
             });
