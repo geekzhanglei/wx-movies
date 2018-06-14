@@ -1,1 +1,4 @@
 /* pages/movies/find/find.wxss */
+.comp {
+  width:100%;
+}

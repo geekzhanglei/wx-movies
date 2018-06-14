@@ -13,7 +13,8 @@ Page({
         autoplay: true,
         interval: 5000,
         duration: 1000,
-        _count: 4
+        _count: 4,
+        isShowOk: true
     },
 
     /**
@@ -28,25 +29,28 @@ Page({
     },
 
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
+    // 转发
+    onShareAppMessage: function(res) {
+        return {
+            title: '精彩影视剧',
+            path: 'pages/teleplay/index'
+        }
     },
     /**
      * 自定义函数
      */
     _handleSliderData(data) {
         wx.hideLoading();
-        let arrImg = [];
-        console.log(data)
         try {
             data.forEach(element => {
                 element.img = element.img.replace("http://files.zmzjstu.com", globalVars.httpsDomain);
                 element.link = element.link.replace("http://www.zimuzu.tv", globalVars.httpsDomain);
             });
-        } catch (e) {}
+        } catch (e) {
+            this.setData({
+                isShowOk: false
+            });
+        }
         this.setData({
             imgUrls: data
         });

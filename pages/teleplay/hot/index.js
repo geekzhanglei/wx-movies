@@ -27,34 +27,6 @@ Page({
     },
 
     /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh() {
@@ -87,11 +59,12 @@ Page({
         utils.getListApi(_this._handleHotTvData, globalVars.httpsDomain + "/node/hottv?start=" + _this.data._start + "&count=" + _this.data._count);
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
+    // 转发
+    onShareAppMessage: function(res) {
+        return {
+            title: '热门美剧',
+            path: 'pages/teleplay/hot/index'
+        }
     },
     /**
      * 自定义函数
@@ -107,7 +80,6 @@ Page({
         let _rowNum = 1;
 
         // 下拉结束
-        console.log(_this.data._count, data.length)
         if (_this.data._count > data.length) {
             _this.setData({
                 _isEnd: true

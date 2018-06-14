@@ -11,8 +11,8 @@ Page({
         _start: 0,
         _count: 1,
         list: [],
-        date: 1,
-        days: [11, 2, 1, 3, 4, 5],
+        date: '',
+        days: [],
         isShowSelect: false,
         value: [],
         whichDay: '',
@@ -38,40 +38,12 @@ Page({
 
         this.initDays();
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
+    // 转发
+    onShareAppMessage: function(res) {
+        return {
+            title: '美剧排期表',
+            path: 'pages/teleplay/schedule/index'
+        }
     },
     // 自定义函数
     _handleScheduleData(data) {
@@ -113,7 +85,7 @@ Page({
                     }
                 } else {
                     obj.icon = {
-                        status: "search",
+                        status: "waiting",
                         color: ""
                     }
                 }
@@ -151,7 +123,7 @@ Page({
     },
     changeSchedule() {
         this.setData({
-            isShowSelect: true
+            isShowSelect: !this.data.isShowSelect
         });
     },
     bindChange(e) {
@@ -182,9 +154,11 @@ Page({
         clearTimeout(this.data.timeId);
         _timeId = setTimeout(() => {
             utils.getListApi(_this._handleScheduleData, `${globalVars.httpsDomain}/node/schedule?start=${e.detail.value[0]}&count=${_this.data._count}`);
+
             this.setData({
                 whichDay: _whichDay,
-                isShowSelect: false
+                isShowSelect: false,
+                value: [e.detail.value]
             });
             console.log('一秒空闲后进入')
         }, 1000);

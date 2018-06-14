@@ -37,7 +37,8 @@ Page({
                 isShow: true,
                 tvType: "slider",
                 tvId: options.data.split('/').reverse()[0],
-                resourceDetail: options.data
+                resourceDetail: options.data,
+                typeTitle: "已开播新剧->"
             });
             // 接口请求，回调数据渲染
             this.getMovieDetailsApi(_this.renderFunc);
@@ -67,6 +68,20 @@ Page({
         this.refreshSorLin();
     },
 
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function() {
+        wx.showNavigationBarLoading();
+        this.onLoad();
+    },
+    // 转发
+    onShareAppMessage: function(res) {
+        return {
+            title: this.data.tv.cnName || '未知剧集名',
+            path: 'pages/teleplay/index'
+        }
+    },
 
     /**
      * 自定义函数
@@ -75,15 +90,26 @@ Page({
         let _this = this;
         wx.request({
             url: `${globalVars.httpsDomain}/node/resource?id=${_this.data.resourceDetail.split('/').reverse()[0]}`,
+            // url: `http://127.0.0.1:8080/node/resource?id=${_this.data.resourceDetail.split('/').reverse()[0]}`,
             method: 'GET',
             header: {
-                'content-type': 'text/plain' // 默认值
+                'content-type': 'text/json' // 默认值
             },
             success: function(res) {
-                _this.setData({
-                    resourceLink: res.data,
-                    _isLoadingLink: false
-                });
+                wx.hideNavigationBarLoading();
+                if (res.data.code == '10000') {
+                    _this.setData({
+                        resourceLink: res.data.url,
+                        _isLoadingLink: false
+                    });
+                }
+                if (res.data.code == "10001") {
+                    wx.showToast({
+                        icon: 'none',
+                        title: '资源搜索失败，请下拉刷新页面重试',
+                        duration: 2000
+                    });
+                }
             },
             fail: function(err) {
                 console.log('网络错误');
@@ -95,20 +121,20 @@ Page({
         if (this.data._isLoadingLink) {
             wx.showToast({
                 icon: 'none',
-                title: '正在努力搜索资源，请几秒后重试',
+                title: '正在努力搜索资源，请稍后重试',
                 duration: 2000
             });
         } else {
             wx.setClipboardData({
                 data: _this.data.resourceLink,
-                success: function(res) {
+                success: function() {
                     wx.showToast({
                         icon: 'none',
                         title: '复制成功，请在浏览器中打开',
                         duration: 2000
                     });
                 }
-            })
+            });
         }
     },
     renderFunc(data) {
@@ -132,7 +158,7 @@ Page({
         });
         // 更新页面标题
         wx.setNavigationBarTitle({
-            title: data.cnName //页面标题为路由参数
+            title: this.data.typeTitle + data.cnName //页面标题为路由参数
         });
     },
     // 每一页的图片

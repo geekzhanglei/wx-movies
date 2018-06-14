@@ -51,7 +51,7 @@ Page({
         }
         return {
             title: '影视资讯首页',
-            path: '/page/user?id=123',
+            path: 'pages/index/index',
             success: function(res) {
                 // 转发成功
                 console.log('转发成功');

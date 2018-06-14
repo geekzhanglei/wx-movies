@@ -82,7 +82,7 @@ scroll-view {
 /* 专题 */
 .item {
     background: rgb(96, 201, 236);
-    height:5rem;
+    height:200rpx;
     margin:0.5rem;
     border-radius:0.3125rem;
     position: relative;

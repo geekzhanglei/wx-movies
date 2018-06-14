@@ -9,6 +9,7 @@ Page({
      */
     data: {
         arrMovieList: [],
+        type:'',
         _optionId: "",
         _start: 0,
         _count: 15 // 多层次请求每次请求个数
@@ -42,7 +43,7 @@ Page({
                 break;
             case "usbox":
                 wx.setNavigationBarTitle({
-                    title: "电影->北美票房榜" //页面标题为路由参数
+                    title: "电影->北美周票房榜" //页面标题为路由参数
                 });
                 utils.getListApi(_this.handleMovieList, globalVars.httpsDomain + "/v2/movie/us_box");
                 break;
@@ -107,7 +108,13 @@ Page({
                 break;
         }
     },
-
+    // 转发
+    onShareAppMessage: function(res) {
+        return {
+            title: '电影排行榜',
+            path: 'pages/movies/index'
+        }
+    },
     /**
      * 用户点击右上角分享
      */
@@ -128,17 +135,17 @@ Page({
             wx.hideLoading();
             wx.showToast({
                 title: '请求失败，可能接口超限，请稍后重试',
-                duration: 2000
+                duration: 2000,
+                icon: 'none'
             })
         }
+
         // 列表已下拉完
         if (_this.data._count > data.subjects.length) {
             _this.setData({
                 _isEnd: true
             });
-            return;
         }
-
         data.subjects.forEach(element => {
             if (element.subject) {
                 element.subject.box = element.box;

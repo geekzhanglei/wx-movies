@@ -8,7 +8,7 @@
                 <view class="wrap-img" bindtap="gotoDetail" data-link="{{ele.link}}">
                     <span class="img-rank">{{ele.rank}}</span>
                     <span class="img-type">{{ele.year2kind}}</span>
-                    <image class="img-cont" mode="widthFix" src="{{ele.img}}"></image>
+                    <image class="img-cont" mode="aspectFill" src="{{ele.img}}"></image>
                 </view>
                 <text class="des">{{ele.cnName}}</text>
             </view>

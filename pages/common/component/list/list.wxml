@@ -6,7 +6,7 @@
             </view>
             <view class="info">
                 <view class="movie-title">{{item.title}}
-                    <text class="rating">{{item.rating}}</text>
+                    <text class="rating" wx:if="{{whichPage!='comming'}}">{{item.rating}}</text>
                 </view>
                 <text class="box">{{item.box}}</text>
                 <text class="type">类型：{{item.type}}</text>

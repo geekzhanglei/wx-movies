@@ -1,12 +1,15 @@
 /* pages/usercenter/aboutus/index.wxss */
+page {
+  overflow: hidden;
+}
 .wrap {
   position: relative;
-  overflow: hidden;
+   overflow: hidden; 
 }
 .bgimg {
   width:100%;
   height:100vh;
-  filter:blur(3rpx);
+  filter:blur(4rpx);
 }
 .aboutus {
   padding:100rpx 35rpx;

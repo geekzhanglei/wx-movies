@@ -42,7 +42,8 @@ Page({
                 wx.hideLoading();
                 wx.showToast({
                     title: '请求失败，可能接口超限，请稍后重试',
-                    duration: 2000
+                    duration: 2000,
+                    icon: 'none'
                 })
                 return;
             }
@@ -108,13 +109,6 @@ Page({
         utils.getListApi(this._handleSearchData, globalVars.httpsDomain + "/v2/movie/search?q={" + _this.data.searchKeyWords + "}" + "&start=" + _this.data._start + "&count=" + _this.data._count);
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    },
-
     // 点击事件
     goToList(event) {
         wx.navigateTo({
@@ -178,7 +172,8 @@ Page({
             wx.hideloading();
             wx.showToast({
                 title: '请求失败,可能是接口达到上限，请十五分钟后尝试',
-                duration: 2000
+                duration: 2000,
+                icon: 'none'
             });
             this.setData({
                 isShowOk: false
@@ -190,7 +185,6 @@ Page({
             _this.setData({
                 _isEnd: true
             });
-            return;
         }
 
         data.subjects.forEach(element => {

@@ -1,6 +1,6 @@
 <!--pages/teleplay/index.wxml-->
 <view class="container">
-    <block class="tv" wx:if="{{true}}">
+    <block class="tv" wx:if="{{isShowOk}}">
         <view class="wrap">
             <view class="wrap-slider">
                 <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">

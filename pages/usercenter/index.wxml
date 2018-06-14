@@ -7,15 +7,15 @@
             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
         </block>
     </view>
-    <view class="item-wrap">
-        <view class="aboutus" bindtap="goToAboutus">
+    <view class="item-wrap" wx:for="{{list}}" wx:key="{{item.type}}">
+        <button class="item" bindtap="goToItem" data-type="{{item.type}}" open-type="{{item.type=='connect'?'contact':''}}">
             <view class="flex-left">
-                <image class="left" src="./icon/aboutus.png"></image>
-                <text>作者絮言</text>
+                <image class="left" src="{{item.icon}}"></image>
+                <text>{{item.title}}</text>
             </view>
             <view class="flex-right">
-                <image src="./icon/arrow.png" mode="aspectFit" class="right"></image>
+                <image src="../../images/userIcons/arrow.png" mode="aspectFit" class="right"></image>
             </view>
-        </view>
+        </button>
     </view>
 </view>

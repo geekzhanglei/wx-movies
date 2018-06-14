@@ -16,11 +16,16 @@ page {
     border: 0.0625rem solid #ddd;
 }
 
-.wrap-title .cont:first-child {
-    line-height: 2rem;
+.wrap-title .cont {
+display: flex;
+justify-content: center;
+align-items: center;
     height: 2rem;
-}
 
+}
+.wrap-title .cont icon {
+  margin-left:15rpx;
+}
 .wrap-list .item {
     display: flex;
     flex-direction: row;
@@ -48,6 +53,7 @@ page {
 .wrap-list .item .img image {
     width: 100%;
     height: 100%;
+    min-height: 160rpx;
 }
 
 .wrap-list .item .cont .infos {
@@ -92,4 +98,9 @@ page {
 
 .wrap-list .item .cont .status .icon {
     margin-top: 0.3rem;
+}
+.empty-list {
+    text-align: center;
+    margin-top: 500rpx;
+    font-size: 40rpx;
 }
