@@ -1,19 +1,19 @@
 {
     "pages": [
+        "pages/teleplay/index",
         "pages/index/index",
+        "pages/common/tvitem/tvitem",
         "pages/usercenter/index",
         "pages/teleplay/schedule/index",
         "pages/usercenter/aboutus/index",
         "pages/movies/index",
-        "pages/teleplay/index",
         "pages/teleplay/hot/index",
-        "pages/common/tvitem/tvitem",
         "pages/logs/logs",
         "pages/common/movieitem/movieItem",
         "pages/movies/find/find"
     ],
     "window": {
-        "backgroundTextStyle": "#eee",
+        "backgroundTextStyle": "dark",
         "navigationBarBackgroundColor": "#00B2EE",
         "navigationBarTitleText": "影视资讯",
         "navigationBarTextStyle": "white",
@@ -24,9 +24,9 @@
         "downloadFile": 10000
     },
     "tabBar": {
-        "color": "#aaa",
+        "color": "black",
         "selectedColor": "#1E90FF",
-        "borderStyle": "1E90FF",
+        "borderStyle": "black",
         "list": [{
                 "pagePath": "pages/index/index",
                 "text": "首页",

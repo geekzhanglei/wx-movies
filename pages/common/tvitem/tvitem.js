@@ -21,8 +21,6 @@ Page({
     onLoad: function(options) {
         let _this = this;
 
-        console.log(options);
-
         if (options.link) {
             this.setData({
                 isShow: true,
@@ -63,9 +61,7 @@ Page({
                 isShow: true,
                 resourceDetail: scheduleData.link
             });
-        } else {}
-        // 更新资源链接
-        this.refreshSorLin();
+        } 
     },
 
     /**
@@ -86,58 +82,58 @@ Page({
     /**
      * 自定义函数
      */
-    refreshSorLin() {
-        let _this = this;
-        wx.request({
-            url: `${globalVars.httpsDomain}/node/resource?id=${_this.data.resourceDetail.split('/').reverse()[0]}`,
-            // url: `http://127.0.0.1:8080/node/resource?id=${_this.data.resourceDetail.split('/').reverse()[0]}`,
-            method: 'GET',
-            header: {
-                'content-type': 'text/json' // 默认值
-            },
-            success: function(res) {
-                wx.hideNavigationBarLoading();
-                if (res.data.code == '10000') {
-                    _this.setData({
-                        resourceLink: res.data.url,
-                        _isLoadingLink: false
-                    });
-                }
-                if (res.data.code == "10001") {
-                    wx.showToast({
-                        icon: 'none',
-                        title: '资源搜索失败，请下拉刷新页面重试',
-                        duration: 2000
-                    });
-                }
-            },
-            fail: function(err) {
-                console.log('网络错误');
-            }
-        })
-    },
-    shareLink() {
-        let _this = this;
-        if (this.data._isLoadingLink) {
-            wx.showToast({
-                icon: 'none',
-                title: '正在努力搜索资源，请稍后重试',
-                duration: 2000
-            });
-        } else {
-            wx.setClipboardData({
-                data: _this.data.resourceLink,
-                success: function() {
-                    wx.showToast({
-                        icon: 'none',
-                        title: '复制成功，请在浏览器中打开',
-                        duration: 2000
-                    });
-                }
-            });
-        }
-    },
+    // refreshSorLin() {
+    //     let _this = this;
+    //     wx.request({
+    //         url: `${globalVars.httpsDomain}/node/resource?id=${_this.data.resourceDetail.split('/').reverse()[0]}`,
+    //         method: 'GET',
+    //         header: {
+    //             'content-type': 'text/json' // 默认值
+    //         },
+    //         success: function(res) {
+    //             wx.hideNavigationBarLoading();
+    //             if (res.data.code == '10000') {
+    //                 _this.setData({
+    //                     resourceLink: res.data.url,
+    //                     _isLoadingLink: false
+    //                 });
+    //             }
+    //             if (res.data.code == "10001") {
+    //                 wx.showToast({
+    //                     icon: 'none',
+    //                     title: '资源搜索失败，请下拉刷新页面重试',
+    //                     duration: 2000
+    //                 });
+    //             }
+    //         },
+    //         fail: function(err) {
+    //             console.log('网络错误');
+    //         }
+    //     })
+    // },
+    // shareLink() {
+    //     let _this = this;
+    //     if (this.data._isLoadingLink) {
+    //         wx.showToast({
+    //             icon: 'none',
+    //             title: '正在努力搜索资源，请稍后重试',
+    //             duration: 2000
+    //         });
+    //     } else {
+    //         wx.setClipboardData({
+    //             data: _this.data.resourceLink,
+    //             success: function() {
+    //                 wx.showToast({
+    //                     icon: 'none',
+    //                     title: '复制成功，请在浏览器中打开',
+    //                     duration: 2000
+    //                 });
+    //             }
+    //         });
+    //     }
+    // },
     renderFunc(data) {
+      console.log(data)
         this.setData({
             tv: {
                 cnName: data.cnName,
@@ -152,7 +148,8 @@ Page({
                 point: data.point,
                 readNum: data.readNum,
                 status: data.status,
-                link: data.resource
+                link: data.resource,
+                level:data.level.toUpperCase()
             },
             isShow: true
         });
@@ -170,7 +167,6 @@ Page({
                 'content-type': 'json' // 默认值
             },
             success: function(res) {
-                console.log(res)
                 if (res.statusCode == 200) {
                     _this.setData({
                         isShow: true

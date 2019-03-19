@@ -72,3 +72,22 @@
 .resource .cont {
     color: blue;
 }
+/* 分级颜色标识 */
+.tvlevel {
+   font-size: 1rem;
+}
+.info.A {
+   color:#45BC6E;
+}
+.info.B {
+  color:#1A5C86;
+}
+.info.C {
+  color:#FB6F43
+}
+.info.D {
+  color:#FC4E4A
+}
+.info.E {
+  color:#FDB35A
+}

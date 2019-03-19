@@ -5,22 +5,20 @@
              <view class="meta">
                 <image class="poster" src="{{tv.img}}" mode="aspectFit" />
                 <text class="title">{{tv.cnName}}({{tv.enName}})</text>
+                <text wx:if="{{tv.level}}" class="info tvlevel {{tv.level}}">影视分级：{{tv.level}}</text>
                 <text class="info" wx:if="{{tv.readNum}}">{{tv.season}}({{tv.readNum}})</text>
                 <view class="item">
-                    <text class="info">类型：{{tv.type}}</text>
+                    <text class="info" wx:if="{{tv.type}}">类型：{{tv.type}}</text>
                     <text class="info" wx:if="{{tv.point}}">评分：{{tv.point}}</text>
                 </view>
                 <view class="item">
                     <text class="info">续订情况：{{tv.status}}</text>
-                    <text class="info">电视台：{{tv.tv}}</text>
+                    <text class="info" wx:if="{{tv.tv}}">电视台：{{tv.tv}}</text>
                 </view>
-                <text class="info">导演：{{tv.director}}</text>
-                <text class="info">主演：{{tv.cast}}</text>
+                <text class="info" wx:if="{{tv.director[0]}}">导演：{{tv.director}}</text>
+                <text class="info" wx:if="{{tv.director[0]}}">主演：{{tv.cast}}</text>
             </view> 
-            <view class="item resource">
-                <text class="cont" bindtap="shareLink">点击复制资源外链浏览器打开</text>
-            </view>
-            <view class="summary">
+            <view class="summary" wx:if="{{tv.des}}">
                 <text class="label">摘要：</text>
                 <text class="content">{{tv.des}}</text>
             </view>
