@@ -11,8 +11,9 @@ Page({
         tvId: '',
         tvType: '',
         resourceDetail: '',
-        resourceLink: 'http://zmz003.com/404.html',
-        _isLoadingLink: true
+        resourceLink: 'http://www.zmz2019.com/404.html',
+        _isLoadingLink: true,
+        typeTitle: ''
     },
 
     /**
@@ -20,7 +21,6 @@ Page({
      */
     onLoad: function(options) {
         let _this = this;
-
         if (options.link) {
             this.setData({
                 isShow: true,
@@ -41,7 +41,7 @@ Page({
             // 接口请求，回调数据渲染
             this.getMovieDetailsApi(_this.renderFunc);
         } else if (options.schedule) {
-            let scheduleData = JSON.parse(options.schedule);
+          let scheduleData = JSON.parse(decodeURIComponent(options.schedule));
             this.setData({
                 tv: {
                     cnName: scheduleData.cnName,

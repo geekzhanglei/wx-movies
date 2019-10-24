@@ -5,7 +5,7 @@
             <view class="wrap-slider">
                 <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
                     <block wx:for="{{imgUrls}}" wx:key="unique">
-                        <swiper-item bindtap="goToHotTvList" data-source="{{item.link}}" id="slider">
+                         <swiper-item bindtap="goToHotTvList" data-source="{{item.link}}" id="slider">
                             <image src="{{item.img}}" mode="widthFix" class="slide-image" />
                         </swiper-item>
                     </block>

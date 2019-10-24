@@ -97,7 +97,6 @@ Page({
             this.setData({
                 list: list
             });
-            console.log(this.data.list)
         } catch (error) {}
         wx.hideLoading();
     },
@@ -108,8 +107,9 @@ Page({
     // 点击跳转
     gotoTvItem(event) {
         let _this = this;
+      console.log(JSON.stringify(_this.data.list[event.currentTarget.dataset.schedule]))
         wx.navigateTo({
-            url: "/pages/common/tvitem/tvitem?schedule=" + JSON.stringify(_this.data.list[event.currentTarget.dataset.schedule])
+          url: "/pages/common/tvitem/tvitem?schedule=" + encodeURIComponent(JSON.stringify(_this.data.list[event.currentTarget.dataset.schedule]))
         });
     },
     initDays() {
