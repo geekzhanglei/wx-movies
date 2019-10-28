@@ -1,59 +1,61 @@
 {
-    "pages": [
-        "pages/teleplay/index",
-        "pages/index/index",
-        "pages/common/tvitem/tvitem",
-        "pages/usercenter/index",
-        "pages/teleplay/schedule/index",
-        "pages/usercenter/aboutus/index",
-        "pages/movies/index",
-        "pages/teleplay/hot/index",
-        "pages/logs/logs",
-        "pages/common/movieitem/movieItem",
-        "pages/movies/find/find"
-    ],
-    "window": {
-        "backgroundTextStyle": "dark",
-        "navigationBarBackgroundColor": "#00B2EE",
-        "navigationBarTitleText": "影视资讯",
-        "navigationBarTextStyle": "white",
-        "backgroundColor": "#eee"
-    },
-    "networkTimeout": {
-        "request": 10000,
-        "downloadFile": 10000
-    },
-    "tabBar": {
-        "color": "black",
-        "selectedColor": "#1E90FF",
-        "borderStyle": "black",
-        "list": [{
-                "pagePath": "pages/index/index",
-                "text": "首页",
-                "iconPath": "images/tabBarIcons/homepage.png",
-                "selectedIconPath": "images/tabBarIcons/s-homepage.png"
-            },
-            {
-                "pagePath": "pages/movies/index",
-                "text": "电影",
-                "iconPath": "images/tabBarIcons/movie.png",
-                "selectedIconPath": "images/tabBarIcons/s-movie.png"
-            },
-            {
-                "pagePath": "pages/teleplay/index",
-                "text": "电视剧",
-                "iconPath": "images/tabBarIcons/teleplay.png",
-                "selectedIconPath": "images/tabBarIcons/s-teleplay.png"
-            },
-            {
-                "pagePath": "pages/usercenter/index",
-                "text": "我的",
-                "iconPath": "images/tabBarIcons/user.png",
-                "selectedIconPath": "images/tabBarIcons/s-user.png"
-            }
-        ]
-    },
-    "debug": false,
-    "component": true,
-    "onReachBottomDistance": 200
+  "pages": [
+    "pages/teleplay/index",
+    "pages/index/index",
+    "pages/common/tvitem/tvitem",
+    "pages/usercenter/index",
+    "pages/teleplay/schedule/index",
+    "pages/usercenter/aboutus/index",
+    "pages/movies/index",
+    "pages/teleplay/hot/index",
+    "pages/logs/logs",
+    "pages/common/movieitem/movieItem",
+    "pages/movies/find/find"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#00B2EE",
+    "navigationBarTitleText": "影视资讯",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#eee"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "#1E90FF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabBarIcons/homepage.png",
+        "selectedIconPath": "images/tabBarIcons/s-homepage.png"
+      },
+      {
+        "pagePath": "pages/movies/index",
+        "text": "电影",
+        "iconPath": "images/tabBarIcons/movie.png",
+        "selectedIconPath": "images/tabBarIcons/s-movie.png"
+      },
+      {
+        "pagePath": "pages/teleplay/index",
+        "text": "电视剧",
+        "iconPath": "images/tabBarIcons/teleplay.png",
+        "selectedIconPath": "images/tabBarIcons/s-teleplay.png"
+      },
+      {
+        "pagePath": "pages/usercenter/index",
+        "text": "我的",
+        "iconPath": "images/tabBarIcons/user.png",
+        "selectedIconPath": "images/tabBarIcons/s-user.png"
+      }
+    ]
+  },
+  "debug": false,
+  "component": true,
+  "onReachBottomDistance": 200,
+  "sitemapLocation": "sitemap61.json"
 }

@@ -1,17 +1,20 @@
 <!--pages/movies/index.wxml-->
 <view class="movie" wx:if="{{isShowOk}}">
-    <view class="{{isFind?'search':'active'}}">
+    <!-- <view class="{{isFind?'search':'active'}}">
         <view class="title {{isSearchingTitle}}" bindtap="backto">
             <title>{{title}}</title>
         </view>
         <view class="input-wrap {{isSearchingInput}}">
             <input focus="true" maxlength="8" bindtap="clickInput" type="text" bindinput="inputKeyWords" placeholder="可按导演演员电影名搜索" />
         </view>
+    </view> -->
+    <view class="title">
+        <text>电影类别</text>
     </view>
     <view class="find" wx:if="{{isFind}}">
-        <view class="title">
+        <!-- <view class="title">
             <title>发现</title>
-        </view>
+        </view> -->
         <view class="content">
             <view class="row">
                 <view class="item" bindtap="goToList" id="comming">

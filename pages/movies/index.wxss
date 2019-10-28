@@ -3,6 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color:rgb(245, 248, 250);
 }
 /* 搜索 */
 .input-wrap {
@@ -14,6 +15,19 @@
     justify-content: center; */
     transition: all 200ms ease-in;
 
+}
+/* 标题部分  */
+.title {
+  font-size:0.8rem;
+  color:#888888;
+  background-color:#eee;
+  position:fixed;
+  top:0;
+  width:100%;
+  line-height:2rem;
+  height:2rem;
+  padding-left:0.5rem;
+  z-index:999;
 }
 input {
     text-align:center;
@@ -54,9 +68,7 @@ scroll-view {
     margin-top:2.2rem;
 }
 .find {
-  flex:3;
-  display: flex;
-  flex-direction: column;
+  margin-top:2rem;
   box-sizing: border-box;
   border-top:0.25rem solid #eee;
 }
@@ -96,7 +108,6 @@ scroll-view {
     margin:0.625rem;
 }
 .content .row {
-    flex:1;
     display: flex;
     flex-direction: row;
     align-items:center;
